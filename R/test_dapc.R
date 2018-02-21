@@ -1,6 +1,6 @@
 #' Run test DAPC on rainbow.genind
 #'
-#' This function tests the package by running a DAPC on the example data
+#' This function tests the package by running a simple DAPC on the example data
 #' @param x A genind object
 #' @keywords dapc
 #' @export
