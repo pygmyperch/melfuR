@@ -6,8 +6,8 @@
 #'
 #' @examples
 #' data(rainbow.genind)
-#' dapc <- dapc(rainbow.genind, pop=rainbow.genind$pop)
-#' scatter(dapc)
-
+#' pop <- rainbow.genind$pop
+#' pop
+#' 
 #' @format A genind object with 500 loci, 249 individuals from 14 populations
 "rainbow.genind"
