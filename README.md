@@ -20,7 +20,7 @@ devtools::install_github("pygmyperch/melfuR")
 
 A quick overview of some of the key functions:
 
-* `rainbow.genind`: An example genind object consisting of 500 loci and 249 individuals from 14 populations from *Melanotaenia fluviatilis* in the Murray-Darling Basin. 
+* `rainbow.genind`: An example genind object consisting of 500 loci and 249 individuals from 14 populations of *Melanotaenia fluviatilis* in the Murray-Darling Basin. 
 
 * `test_dapc`: A function to run a simple DAPC on the example SNP data using the ADEGENET package.
 Usage:
