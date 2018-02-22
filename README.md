@@ -30,11 +30,3 @@ data(rainbow.genind)
 test_dapc(rainbow.genind)
 ```
 
-
-
-
-A function to run a simple DAPC on the example SNP data using the ADEGENET package.
-test_dapc
-Usage:
-data(rainbow.genind)
-test_dapc(rainbow.genind)
