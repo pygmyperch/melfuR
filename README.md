@@ -5,10 +5,10 @@ A collection of R scripts for exploratory analysis of ddRAD data and other (hope
 devtools::install_github("pygmyperch/melfuR")
 
 
-# test_dapc.R
+# Functions
+
 A function to run a simple DAPC on the example SNP data using the ADEGENET package.
-
+test_dapc
 Usage:
-
 data(rainbow.genind)
 test_dapc(rainbow.genind)
