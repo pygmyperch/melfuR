@@ -33,17 +33,8 @@ run.gINLAnd <- function(input.dir, res.file, cutoff, coord, env.var){
   pop.size <- read.table(list.files(pattern="*Population_Counts", full.names=TRUE), header=TRUE)
 
 
-  #filenames <- list.files(pattern="*Counts", full.names=TRUE)
-  #inputs <- lapply(filenames, read.table, header = TRUE)
-  #for (i in seq(inputs))
-    #assign(paste0("df", i), inputs[[i]])
-  #save(df1, file="df1")
-  #save(df2, file="df2")
-
-
-
-# run gINLAnd
-  gINLAnd.main <- function(){
+  # run gINLAnd
+   gINLAnd.main <- function(){
 
     # look for previously estimated tau and kappa and load, otherwise estimate from data
     ## estimating from data will take a long time.
