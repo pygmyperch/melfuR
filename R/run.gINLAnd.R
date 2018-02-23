@@ -7,7 +7,7 @@
 #' @examples
 #'  data(CATCOLDQRAIN)
 #'  data(Mf_mdsXY)
-#'  WD <- getwd()
+#'  WD <- system.file("extdata", "rainbow.gen", package = "melfuR")
 #'  run.gINLAnd("WD", "res.CATCOLDQRAIN", 10, Mf_mdsXY, CATCOLDQRAIN)
 
 run.gINLAnd <- function(input.dir, res.file, cutoff, coord, env.var){
