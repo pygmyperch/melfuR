@@ -87,9 +87,9 @@ run.gINLAnd <- function(input.dir, res.file, cutoff, coord, env.var){
     sel.len <- as.numeric(length(t(as.data.frame(which(res.bylocus$logBF >cutoff)))))
 
     # write results to .xlsx file
-    write.xlsx(details, file=paste0(res.file,".xlsx"), sheetName="Details")
-    write.xlsx(sel, file=paste0(res.file,".xlsx"), sheetName="Candidate loci", append=TRUE)
-    write.xlsx(order, file=paste0(res.file,".xlsx"), sheetName="Results", append=TRUE)
+    xlsx::write.xlsx(details, file=paste0(res.file,".xlsx"), sheetName="Details")
+    xlsx::write.xlsx(sel, file=paste0(res.file,".xlsx"), sheetName="Candidate loci", append=TRUE)
+    xlsx::write.xlsx(order, file=paste0(res.file,".xlsx"), sheetName="Results", append=TRUE)
 
     if (sel.len ==1) {
       print(paste0("You have 1 candidate locus with a logBF > ", cutoff))
