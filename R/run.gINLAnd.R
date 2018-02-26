@@ -28,7 +28,8 @@ run.gINLAnd <- function(input.file, res.file, cutoff, coord, env.var){
   #genepop <- paste(input.dir, list.files(pattern="*.gen"))
   genepop <- input.file
 
-  cmd <- paste("perl", system.file("perl", "gINLAnd_input.pl", package = "melfuR"), genepop)
+  #cmd <- paste("perl", system.file("perl", "gINLAnd_input.pl", package = "melfuR"), genepop)
+  cmd <- paste(system.file("perl", "gINLAnd_input.pl", package = "melfuR"), genepop)
   system(cmd)
   allele.counts <- read.table(list.files(pattern="*Allele_Counts", full.names=TRUE), header=TRUE)
   pop.size <- read.table(list.files(pattern="*Population_Counts", full.names=TRUE), header=TRUE)
