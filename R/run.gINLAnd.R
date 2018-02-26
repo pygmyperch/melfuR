@@ -10,7 +10,7 @@
 #'  WD <- system.file("extdata", "rainbow.gen", package = "melfuR")
 #'  run.gINLAnd("WD", "res.CATCOLDQRAIN", 10, Mf_mdsXY, CATCOLDQRAIN)
 
-run.gINLAnd <- function(input.dir, res.file, cutoff, coord, env.var){
+run.gINLAnd <- function(input.file, res.file, cutoff, coord, env.var){
 
   perl <- Sys.which("perl")
 
@@ -25,7 +25,8 @@ run.gINLAnd <- function(input.dir, res.file, cutoff, coord, env.var){
 
   env.var <- env.var
   coord <- coord
-  genepop <- paste(input.dir, list.files(pattern="*.gen"))
+  #genepop <- paste(input.dir, list.files(pattern="*.gen"))
+  genepop <- input.file
 
   cmd <- paste("perl", system.file("perl", "gINLAnd_input.pl", package = "melfuR"), genepop)
   system(cmd)
