@@ -1,3 +1,4 @@
+#!/usr/bin/env perl
 use strict; use warnings;
 #usage perl gINLAnd_input.pl file.gen
 my $Line_1 = 1;
