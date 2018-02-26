@@ -4,7 +4,7 @@
 \alias{run.gINLAnd}
 \title{Run gINLAnd genotype-environment association (GEA) analysis}
 \usage{
-run.gINLAnd(input.dir, res.file, cutoff, coord, env.var)
+run.gINLAnd(input.file, res.file, cutoff, coord, env.var)
 }
 \arguments{
 \item{x}{A Genepop file}
