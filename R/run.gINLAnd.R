@@ -1,50 +1,52 @@
 #' Run gINLAnd genotype-environment association (GEA) analysis
 #'
-#' This function tests for GEAs using SNP data in a Genepop format
-#' @param x A Genepop file
+#' This function tests for GEAs using SNP data in ADEGENET's genind format
+#' @param input.file A genind object
+#' @param result.file name of your result file
+#' @param cutoff logBF threshold for candidate loci (i.e. loci with logBF>cutoff will be considered candidates)
+#' @param coord dataframe with x and y spatial coordinates for each population
+#' @param env.var value of some environmental variable for each population
 #' @keywords gINLAnd
 #' @export
 #' @examples
+#'  setwd("path/to/working/directory")
+#'
+#'  ## load the example data
+#'  data(rainbow.genind)
 #'  data(CATCOLDQRAIN)
 #'  data(Mf_mdsXY)
-#'  WD <- system.file("extdata", "rainbow.gen", package = "melfuR")
-#'  run.gINLAnd("WD", "res.CATCOLDQRAIN", 10, Mf_mdsXY, CATCOLDQRAIN)
+#'
+#'  ## run gINLAnd
+#'  run.gINLAnd(rainbow.genind, "res.CATCOLDQRAIN", 10, Mf_mdsXY, CATCOLDQRAIN)
 
-run.gINLAnd <- function(input.file, res.file, cutoff, coord, env.var){
-
-  perl <- Sys.which("perl")
-
-  if (perl == "") {
-    stop(
-      "Cannot find 'perl'. run.gINLAnd requires perl to be installed and on the PATH.",
-      call. = FALSE
-    )
-  }
+run.gINLAnd <- function(input.file, result.file, cutoff, coord, env.var){
 
   # prepare inputs for gINLAnd
 
   env.var <- env.var
   coord <- coord
-  #genepop <- paste(getwd(), "/", list.files(pattern="*.gen"))
-
-
-  cmd <- paste("perl", system.file("perl", "gINLAnd_input.pl", package = "melfuR"), input.file)
-  system(cmd)
-  allele.counts <- read.table(list.files(pattern="*Allele_Counts", full.names=TRUE), header=TRUE)
-  pop.size <- read.table(list.files(pattern="*Population_Counts", full.names=TRUE), header=TRUE)
+  gen_pop <- genind2genpop(input.file)
+  allele.tab <- as.data.frame(gen_pop$tab)
+  allele1 <- allele.tab[ ,seq(1, ncol(allele.tab), 2)]
+  allele2 <- allele.tab[ ,seq(2, ncol(allele.tab), 2)]
+  pop_count <- allele1 + allele2
+  locus.names <- as.data.frame(input.file@all.names)
+  locus.names <- as.character(colnames(locus.names))
+  colnames(allele1) <- locus.names
+  colnames(pop_count) <- locus.names
 
 
   # run gINLAnd
-   gINLAnd.main <- function(){
+  gINLAnd.main <- function(){
 
     # look for previously estimated tau and kappa and load, otherwise estimate from data
     ## estimating from data will take a long time.
 
     if(!exists("tau")) {
       if(!file.exists("tau")) {
-        subs = sample(x=1:ncol(allele.counts),size=10,replace=FALSE)
-        res.infcov <- gINLAnd::gINLAnd.inference(s=coord,sphere=FALSE, z=allele.counts,codominant=TRUE,
-                                        pop.size=pop.size, inference.cov=TRUE, subset.loci.inf.cov = subs)
+        subs = sample(x=1:ncol(allele1),size=500,replace=FALSE)
+        res.infcov <- gINLAnd::gINLAnd.inference(s=coord,sphere=FALSE, z=allele1,codominant=TRUE,
+                                                 pop.size=pop_count, inference.cov=TRUE, subset.loci.inf.cov = subs)
         tau <- res.infcov$tau
         save(tau, file="tau")
         kappa <- res.infcov$kappa
@@ -59,20 +61,20 @@ run.gINLAnd <- function(input.file, res.file, cutoff, coord, env.var){
 
     ## run the analysis using all SNPs with parameters estimated above ##
     res.bylocus <- gINLAnd::gINLAnd.inference(s=coord,sphere=FALSE,
-                                     z=allele.counts,codominant=TRUE,
-                                     pop.size=pop.size,y=env.var[,1],
-                                     tau=tau,kappa=kappa,
-                                     mlik=TRUE,
-                                     models.mlik=list("z~1"=FALSE,"z~1+x"=TRUE,"z~1+y"=FALSE,"z~1+x+y"=TRUE),
-                                     inference.cov=FALSE)
+                                              z=allele1,codominant=TRUE,
+                                              pop.size=pop_count,y=env.var[,1],
+                                              tau=tau,kappa=kappa,
+                                              mlik=TRUE,
+                                              models.mlik=list("z~1"=FALSE,"z~1+x"=TRUE,"z~1+y"=FALSE,"z~1+x+y"=TRUE),
+                                              inference.cov=FALSE)
 
 
 
     ## plot log bayes factors for each loci highlighting those with logBF > your cutoff ##
-    fig <- plot.default(res.bylocus$logBF, col=ifelse(res.bylocus$logBF > cutoff, "red", "black"), main=res.file)
+    fig <- plot.default(res.bylocus$logBF, col=ifelse(res.bylocus$logBF > cutoff, "red", "black"), main=result.file)
 
     ## print to file
-    pdf(file=paste0(res.file,".pdf"), width=6, height=6)
+    pdf(file=paste0(result.file,".pdf"), width=6, height=6)
     plot.default(res.bylocus$logBF, col=ifelse(res.bylocus$logBF > cutoff, "red", "black"));
     dev.off()
 
@@ -88,9 +90,9 @@ run.gINLAnd <- function(input.file, res.file, cutoff, coord, env.var){
     sel.len <- as.numeric(length(t(as.data.frame(which(res.bylocus$logBF >cutoff)))))
 
     # write results to .xlsx file
-    xlsx::write.xlsx(details, file=paste0(res.file,".xlsx"), sheetName="Details")
-    xlsx::write.xlsx(sel, file=paste0(res.file,".xlsx"), sheetName="Candidate loci", append=TRUE)
-    xlsx::write.xlsx(order, file=paste0(res.file,".xlsx"), sheetName="Results", append=TRUE)
+    xlsx::write.xlsx(details, file=paste0(result.file,".xlsx"), sheetName="Details")
+    xlsx::write.xlsx(sel, file=paste0(result.file,".xlsx"), sheetName="Candidate loci", append=TRUE)
+    xlsx::write.xlsx(order, file=paste0(result.file,".xlsx"), sheetName="Results", append=TRUE)
 
     if (sel.len ==1) {
       print(paste0("You have 1 candidate locus with a logBF > ", cutoff))
@@ -106,6 +108,3 @@ run.gINLAnd <- function(input.file, res.file, cutoff, coord, env.var){
   print("Your analysis has finished, have a nice day.")
 
 }
-
-
-

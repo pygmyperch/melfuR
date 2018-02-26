@@ -4,18 +4,31 @@
 \alias{run.gINLAnd}
 \title{Run gINLAnd genotype-environment association (GEA) analysis}
 \usage{
-run.gINLAnd(input.file, res.file, cutoff, coord, env.var)
+run.gINLAnd(input.file, result.file, cutoff, coord, env.var)
 }
 \arguments{
-\item{x}{A Genepop file}
+\item{input.file}{A genind object}
+
+\item{result.file}{name of your result file}
+
+\item{cutoff}{logBF threshold for candidate loci (i.e. loci with logBF>cutoff will be considered candidates)}
+
+\item{coord}{dataframe with x and y spatial coordinates for each population}
+
+\item{env.var}{value of some environmental variable for each population}
 }
 \description{
-This function tests for GEAs using SNP data in a Genepop format
+This function tests for GEAs using SNP data in ADEGENET's genind format
 }
 \examples{
+ setwd("path/to/working/directory")
+
+ ## load the example data
+ data(rainbow.genind)
  data(CATCOLDQRAIN)
  data(Mf_mdsXY)
- WD <- system.file("extdata", "rainbow.gen", package = "melfuR")
- run.gINLAnd("WD", "res.CATCOLDQRAIN", 10, Mf_mdsXY, CATCOLDQRAIN)
+
+ ## run gINLAnd
+ run.gINLAnd(rainbow.genind, "res.CATCOLDQRAIN", 10, Mf_mdsXY, CATCOLDQRAIN)
 }
 \keyword{gINLAnd}
