@@ -1,6 +1,6 @@
-#' Run gINLAnd genotype-environment association (GEA) analysis
+#' A wrapper function to run gINLAnd genotype-environment association (GEA) analysis using a genind file
 #'
-#' This function tests for GEAs using SNP data in ADEGENET's genind format
+#' This function calls gINLAnd to test for GEAs using SNP data in ADEGENET's genind format
 #' @param input.file A genind object
 #' @param result.file name of your result file
 #' @param cutoff logBF threshold for candidate loci (i.e. loci with logBF>cutoff will be considered candidates)
@@ -9,11 +9,12 @@
 #' @keywords gINLAnd
 #' @export
 #' @examples
+#'  ## set directory for results to be written
 #'  setwd("path/to/working/directory")
 #'
 #'  ## load the example data
 #'  data(rainbow.genind)
-#'  data(CATCOLDQRAIN)
+#'  data(PrecipPC2)
 #'  data(Mf_mdsXY)
 #'
 #'  ## run gINLAnd
