@@ -45,7 +45,7 @@ run.gINLAnd <- function(input.file, result.file, cutoff, coord, env.var){
 
     if(!exists("tau")) {
       if(!file.exists("tau")) {
-        subs = sample(x=1:ncol(allele1),size=500,replace=FALSE)
+        subs = sample(x=1:ncol(allele1),size=100,replace=FALSE)
         res.infcov <- gINLAnd::gINLAnd.inference(s=coord,sphere=FALSE, z=allele1,codominant=TRUE,
                                                  pop.size=pop_count, inference.cov=TRUE, subset.loci.inf.cov = subs)
         tau <- res.infcov$tau
