@@ -10,19 +10,20 @@
 #'  ## set directory for results to be written
 #'  setwd("path/to/working/directory")
 #'
-#'
-#'  generate list of loci to keep
+#'  # load example structure file
+#'  stfile <- system.file("extdata", "Mfsub500.stru", package="melfuR")
+#'  # generate list of loci to keep
 #'  snplist <- as.data.frame(c("SNP_1", "SNP_45", "SNP_96"))
 #'
 #'  # subset file to the three loci, keeping original population codes
-#'  subset.structure("Mfsub500.stru", "new_file", snplist)
+#'  subset.stru("Mfsub500.stru", "new_file", snplist)
 #'
 #'  # subset file to three loci, replacing original population codes with numbers
-#'  subset.structure("Mfsub500.stru", "new_file", snplist, popnumbers = TRUE)
+#'  subset.stru("Mfsub500.stru", "new_file", snplist, popnumbers = TRUE)
 
 
 
-subset.structure <- function(input.file, result.file, loci.to.keep, popnumbers=FALSE){
+subset.stru <- function(input.file, result.file, loci.to.keep, popnumbers=FALSE){
 
   struc_file <- read.table(input.file, skip = 1)
   locus_names <- read.table(input.file, nrows=1)
