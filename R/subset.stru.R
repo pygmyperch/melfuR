@@ -16,10 +16,10 @@
 #'  snplist <- as.data.frame(c("SNP_1", "SNP_45", "SNP_96"))
 #'
 #'  # subset file to the three loci, keeping original population codes
-#'  subset.stru("Mfsub500.stru", "new_file", snplist)
+#'  subset.stru(stfile, "new_file", snplist)
 #'
 #'  # subset file to three loci, replacing original population codes with numbers
-#'  subset.stru("Mfsub500.stru", "new_file", snplist, popnumbers = TRUE)
+#'  subset.stru(stfile, "new_file", snplist, popnumbers = TRUE)
 
 
 
