@@ -61,10 +61,3 @@ subset.structure <- function(input.file, result.file, loci.to.keep, popnumbers=F
 
 
 
-
-subset.structure("/Users/chrisbrauer/GoogleDrive/Rpackage_files/local_files/Mfsub500.stru", "new_file", snplist, popnumbers = TRUE)
-
-
-
-
-
