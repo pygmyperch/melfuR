@@ -16,14 +16,14 @@
 #'  snplist <- as.data.frame(c("SNP_1", "SNP_45", "SNP_96"))
 #'
 #'  # subset file to the three loci, keeping original population codes
-#'  subset.stru(stfile, "new_file", snplist)
+#'  subset.snps(stfile, "new_file", snplist)
 #'
 #'  # subset file to three loci, replacing original population codes with numbers
-#'  subset.stru(stfile, "new_file", snplist, popnumbers = TRUE)
+#'  subset.snps(stfile, "new_file", snplist, popnumbers = TRUE)
 
 
 
-subset.stru <- function(input.file, result.file, loci.to.keep, popnumbers=FALSE){
+subset.snps <- function(input.file, result.file, loci.to.keep, popnumbers=FALSE){
 
   struc_file <- read.table(input.file, skip = 1)
   locus_names <- read.table(input.file, nrows=1)
