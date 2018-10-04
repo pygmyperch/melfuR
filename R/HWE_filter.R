@@ -1,10 +1,14 @@
-#' A wrapper function for the hw.test function from pegas to filter a genind object for per locus Hardy-Weinberg equilibrium by population (i.e. remove loci out of HWE in >x% of populations)
+#' A wrapper function for the hw.test function from pegas to filter a genind object for per locus Hardy-Weinberg equilibrium by population (i.e. remove loci out of HWE in >x% of populations at a specified FDR).
 #'
 #' @param GenInd.obj a genind object
 #' @param perm the number of permutations for the monte carlo simulations
 #' @param FDR_cut he false discovery rate threshold
 #' @param pop_thresh the number (%) of populations each locus needs to be in HWE to be retained
 #' @param no_cores the number of cores to use for the analysis
+#' @return FDRadjP.csv a table of FDR adjusted P values for each locus per population
+#' @return OutOfHWE_SNPs.csv a table of SNPs out of HWE at the specified FDR in >pop_thresh populations
+#' @return HWE_SNPs.csv a table of SNPs in HWE at the specified FDR in >pop_thresh populations
+#' @return HWE_list a vector of SNPs in HWE suitable for input to the subset_snps function
 #' @keywords HWE
 #' @export
 #' @examples
@@ -17,8 +21,8 @@
 #'  #subset rainbow.genind to 100 loci
 #'  gen100 <- rainbow.genind[ ,1:200]
 #'
-#'  # run filter
-#'  HWE_filter(gen100, perm=999, FDR_cut=0.1, pop_thresh=50, no_cores=6)
+#'  # run HWE_filter
+#'  run1 <- HWE_filter(gen100, perm=999, FDR_cut=0.1, pop_thresh=50, no_cores=6)
 #'
 
 HWE_filter <- function(GenInd.obj, perm, FDR_cut, pop_thresh, no_cores) {
@@ -84,6 +88,7 @@ HWE_filter <- function(GenInd.obj, perm, FDR_cut, pop_thresh, no_cores) {
 
   #subset list of SNPs in HWE at "FDR_cut" FDR in at least pop_thresh % of populations
   HWE_SNPs <- subset(SigSnps, SigSnps$propOut < pop_thresh)
+  HWE_list <- as.data.frame(rownames(HWE_SNPs))
   write.csv(HWE_SNPs, "HWE_SNPs.csv")
 
   #subset list of SNPs out of HWE at FDR10% in at least pop_thresh % of populations
@@ -96,4 +101,5 @@ HWE_filter <- function(GenInd.obj, perm, FDR_cut, pop_thresh, no_cores) {
   print(noquote(paste0(retained, " remaining loci are considered to be in HWE")))
   print(noquote("Have a nice day."))
 
+  return(HWE_list)
 }

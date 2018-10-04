@@ -4,12 +4,11 @@ Title: A collection of scripts for exploratory analysis of ddRAD data
 Version: 0.01
 Author: Chris Brauer
 Maintainer: Chris Brauer <chris.brauer@flinders.edu.au>
-Suggests: pegas, hierfstat, akima, maps, splancs, tripack, testthat,
-    poppr
 Depends: R (>= 2.14), methods, ade4, adegenet, pegas
+Suggests: pegas, hierfstat, akima, maps, splancs, tripack, testthat, poppr
 Imports: utils, stats, grDevices, MASS, igraph, ape, shiny, ggplot2,
     seqinr, parallel, spdep, boot, reshape2, dplyr (>= 0.4.1),
-    vegan, plyr, foreach, doparallel
+    vegan, plyr, foreach, doParallel
 Description: A collection of scripts for exploratory analysis of ddRAD data.
     various tools for estimating Fst, running population structure analyses,
     and other (hopefully) useful utilities.
