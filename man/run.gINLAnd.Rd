@@ -26,10 +26,23 @@ This function calls gINLAnd to test for GEAs using SNP data in ADEGENET's genind
 
  ## load the example data
  data(rainbow.genind)
- data(PrecipPC2)
- data(Mf_mdsXY)
+ data(rainbow.env)
+
+ # subset rainbow.genind to 200 loci
+ gen100 <- rainbow.genind[,1:200]
+
+ # get xy coordinates
+ coords <- rainbow.env[,2:3]
+
+ # get environmental variable
+ tempPC1 <- as.data.frame(rainbow.env[,4])
 
  ## run gINLAnd
- run.gINLAnd(rainbow.genind, "res.CATCOLDQRAIN", 10, Mf_mdsXY, CATCOLDQRAIN)
+ run.gINLAnd(gen100, "res.tempPC1", 10, coords, tempPC1)
+}
+\references{
+Guillot G, Vitalis R, le Rouzic A, Gautier M (2014) Detecting correlation between allele frequencies
+                 and environmental variables as a signature of selection. A fast computational approach for
+                 genome-wide studies. Spatial Statistics 8, 145–155.
 }
 \keyword{gINLAnd}
