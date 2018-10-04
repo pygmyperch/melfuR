@@ -18,13 +18,13 @@ HWE_filter(GenInd.obj, perm, FDR_cut, pop_thresh, no_cores)
 \item{no_cores}{the number of cores to use for the analysis}
 }
 \value{
-FDRadjP.csv a table of FDR adjusted P values for each locus per population
+FDRadjP.csv           a table of FDR adjusted P values for each locus per population
 
-OutOfHWE_SNPs.csv a table of SNPs out of HWE at the specified FDR in >pop_thresh \% of populations
+OutOfHWE_SNPs.csv     a table of SNPs out of HWE at the specified FDR in >pop_thresh \% of populations
 
-HWE_SNPs.csv a table of SNPs in HWE at the specified FDR in >pop_thresh populations
+HWE_SNPs.csv          a table of SNPs in HWE at the specified FDR in >pop_thresh populations
 
-HWE_list a vector of SNPs in HWE suitable for input to the subset_snps function
+HWE_list              a vector of SNPs in HWE suitable for input to the subset_snps function
 }
 \description{
 A wrapper function for the hw.test function from pegas to filter a genind object for per locus Hardy-Weinberg equilibrium by population (i.e. remove loci out of HWE in >x\% of populations at a specified FDR).
@@ -42,5 +42,12 @@ A wrapper function for the hw.test function from pegas to filter a genind object
  # run HWE_filter
  run1 <- HWE_filter(gen100, perm=999, FDR_cut=0.1, pop_thresh=50, no_cores=6)
 
+
+ ## use output to generate new structure file retaining loci in HWE
+ # load original structure file
+   stfile <- system.file("extdata", "Mfsub500.stru", package="melfuR")
+
+ # run subset_snps using output of HWE_filter
+   subset_snps(stfile, "new_structure_file", run1)
 }
 \keyword{HWE}
