@@ -2,7 +2,7 @@
 % Please edit documentation in R/HWE_filter.R
 \name{HWE_filter}
 \alias{HWE_filter}
-\title{A wrapper function for the hw.test function from pegas to filter a genind object for per locus Hardy-Weinberg equilibrium by population (i.e. remove loci out of HWE in >x% of populations at a specified FDR).}
+\title{A wrapper function for the hw.test function from pegas to filter a genind object for per locus Hardy-Weinberg equilibrium by population (i.e. remove loci out of HWE in >x\% of populations at a specified FDR).}
 \usage{
 HWE_filter(GenInd.obj, perm, FDR_cut, pop_thresh, no_cores)
 }
@@ -13,21 +13,21 @@ HWE_filter(GenInd.obj, perm, FDR_cut, pop_thresh, no_cores)
 
 \item{FDR_cut}{he false discovery rate threshold}
 
-\item{pop_thresh}{the number (%) of populations each locus needs to be in HWE to be retained}
+\item{pop_thresh}{the number (\%) of populations each locus needs to be in HWE to be retained}
 
 \item{no_cores}{the number of cores to use for the analysis}
 }
 \value{
 FDRadjP.csv a table of FDR adjusted P values for each locus per population
 
-OutOfHWE_SNPs.csv a table of SNPs out of HWE at the specified FDR in >pop_thresh populations
+OutOfHWE_SNPs.csv a table of SNPs out of HWE at the specified FDR in >pop_thresh \% of populations
 
 HWE_SNPs.csv a table of SNPs in HWE at the specified FDR in >pop_thresh populations
 
 HWE_list a vector of SNPs in HWE suitable for input to the subset_snps function
 }
 \description{
-A wrapper function for the hw.test function from pegas to filter a genind object for per locus Hardy-Weinberg equilibrium by population (i.e. remove loci out of HWE in >x% of populations at a specified FDR).
+A wrapper function for the hw.test function from pegas to filter a genind object for per locus Hardy-Weinberg equilibrium by population (i.e. remove loci out of HWE in >x\% of populations at a specified FDR).
 }
 \examples{
  ## set directory for results to be written

@@ -1,16 +1,16 @@
-#' A wrapper function for the hw.test function from pegas to filter a genind object for per locus Hardy-Weinberg equilibrium by population (i.e. remove loci out of HWE in >x% of populations at a specified FDR).
+#' A wrapper function for the hw.test function from pegas to filter a genind object for per locus Hardy-Weinberg equilibrium by population (i.e. remove loci out of HWE in >x\% of populations at a specified FDR).
 #'
 #'
 #'
 #' @param GenInd.obj a genind object
 #' @param perm the number of permutations for the monte carlo simulations
 #' @param FDR_cut he false discovery rate threshold
-#' @param pop_thresh the number (%) of populations each locus needs to be in HWE to be retained
+#' @param pop_thresh the number (\%) of populations each locus needs to be in HWE to be retained
 #' @param no_cores the number of cores to use for the analysis
 #'
 #'
 #' @return FDRadjP.csv a table of FDR adjusted P values for each locus per population
-#' @return OutOfHWE_SNPs.csv a table of SNPs out of HWE at the specified FDR in >pop_thresh populations
+#' @return OutOfHWE_SNPs.csv a table of SNPs out of HWE at the specified FDR in >pop_thresh \% of populations
 #' @return HWE_SNPs.csv a table of SNPs in HWE at the specified FDR in >pop_thresh populations
 #' @return HWE_list a vector of SNPs in HWE suitable for input to the subset_snps function
 #'
