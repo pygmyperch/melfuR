@@ -4,8 +4,8 @@
 #'
 #' @param GenInd.obj a genind object
 #' @param perm the number of permutations for the monte carlo simulations
-#' @param FDR_cut he false discovery rate threshold
-#' @param pop_thresh the number (\%) of populations each locus needs to be in HWE to be retained
+#' @param FDR_cut the false discovery rate threshold
+#' @param pop_thresh the minimum number (\%) of populations each locus needs to be in HWE to be retained
 #' @param no_cores the number of cores to use for the analysis
 #'
 #'
@@ -26,11 +26,12 @@
 #'  #subset rainbow.genind to 100 loci
 #'  gen100 <- rainbow.genind[ ,1:200]
 #'
-#'  # run HWE_filter
+#'  # run HWE_filter to exclude loci out of HWE in >50\% of populations at a FDR of 0.1
 #'  run1 <- HWE_filter(gen100, perm=999, FDR_cut=0.1, pop_thresh=50, no_cores=6)
 #'
 #'
-#'  ## use output to generate new structure file retaining loci in HWE
+#'  ## use output to generate new structure file retaining the 97 loci in HWE
+#'
 #'  # load original structure file
 #'    stfile <- system.file("extdata", "Mfsub500.stru", package="melfuR")
 #'
