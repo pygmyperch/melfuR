@@ -8,6 +8,7 @@
 
 mapshp <- function () {
 
-    plot(shp)
+   newshp <- shp
+   return(newshp)
 
 }
