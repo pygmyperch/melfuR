@@ -71,7 +71,7 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
   #shp <- readOGR(stfile, "ne_10m_land")
   #devtools::use_data(shp, internal = TRUE)
 
-  shp <- melfuR:::shp
+  #shp <- melfuR:::shp
 
 
   # define SpatialPointsDataFrame for raw sampleXYs
