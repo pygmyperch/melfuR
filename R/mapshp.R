@@ -8,7 +8,7 @@
 
 mapshp <- function () {
 
-   newshp <- readOGR("extdata/mapfiles", "ne_10m_land")
+   newshp <- readOGR("/inst/extdata/mapfiles", "ne_10m_land")
    ras.extent <- as(extent(118.0496, 138.0496, -38.88000, -28.88000), 'SpatialPolygons')
    cut.shp <- newshp
    cut.shp@bbox <- as.matrix(extent(ras.extent))
