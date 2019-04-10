@@ -7,6 +7,8 @@
 viamaris(sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = NULL)
 }
 \arguments{
+\item{sampleXY}{-  a data frame with three columns: ID, X and Y (in decimal degrees)}
+
 \item{extent.buffer}{(optional) number of degrees to extend raster around your samples, default = 0.5
 (you may need to increase this to allow navigation around land masses that extend beyond the extent of your samples)}
 
@@ -24,7 +26,7 @@ XY.kml                a .kml file of the original coordinates that you can view 
 XY.kml                a .kml file of the adjusted coordinates that you can view in google earth
 }
 \description{
-A wrapper function to run gINLAnd using SNP data in ADEGENET's genind format#' @param sampleXY -  a data frame with three columns: ID, X and Y (in decimal degrees)
+A wrapper function to run gINLAnd using SNP data in ADEGENET's genind format
 }
 \examples{
  ## set directory for results to be written
