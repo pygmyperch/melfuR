@@ -1,6 +1,6 @@
-#' A wrapper function to run gINLAnd genotype-environment association (GEA) analysis using a genind file
+#' gINLAnd genotype-environment association (GEA) analysis
 #'
-#' This function calls gINLAnd to test for GEAs using SNP data in ADEGENET's genind format
+#' A wrapper function to run gINLAnd using SNP data in ADEGENET's genind format
 #' @param input.file A genind object
 #' @param result.file name of your result file
 #' @param cutoff logBF threshold for candidate loci (i.e. loci with logBF>cutoff will be considered candidates)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/run.gINLAnd.R
 \name{run.gINLAnd}
 \alias{run.gINLAnd}
-\title{A wrapper function to run gINLAnd genotype-environment association (GEA) analysis using a genind file}
+\title{gINLAnd genotype-environment association (GEA) analysis}
 \usage{
 run.gINLAnd(input.file, result.file, cutoff, coord, env.var)
 }
@@ -18,7 +18,7 @@ run.gINLAnd(input.file, result.file, cutoff, coord, env.var)
 \item{env.var}{value of some environmental variable for each population}
 }
 \description{
-This function calls gINLAnd to test for GEAs using SNP data in ADEGENET's genind format
+A wrapper function to run gINLAnd using SNP data in ADEGENET's genind format
 }
 \examples{
  ## set directory for results to be written
