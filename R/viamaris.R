@@ -1,6 +1,5 @@
 #' calculate pairwise oceanic distances among sampling locations
 #'
-#' A wrapper function to run gINLAnd using SNP data in ADEGENET's genind format
 #'
 #' @param sampleXY -  a data frame with three columns: ID, X and Y (in decimal degrees)
 #' @param extent.buffer (optional) number of degrees to extend raster around your samples, default = 0.5
@@ -68,11 +67,11 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
   nm <- deparse(substitute(sampleXY))
 
   # Read in Shapefile
-  stfile <- system.file("extdata/mapfiles", package="melfuR")
-  shp <- readOGR(stfile, "ne_10m_land")
+  #stfile <- system.file("extdata/mapfiles", package="melfuR")
+  #shp <- readOGR(stfile, "ne_10m_land")
   #devtools::use_data(shp, internal = TRUE)
 
-  #shp <- melfuR:::shp
+  shp <- melfuR:::shp
 
 
   # define SpatialPointsDataFrame for raw sampleXYs

@@ -26,7 +26,7 @@ XY.kml                a .kml file of the original coordinates that you can view 
 XY.kml                a .kml file of the adjusted coordinates that you can view in google earth
 }
 \description{
-A wrapper function to run gINLAnd using SNP data in ADEGENET's genind format
+calculate pairwise oceanic distances among sampling locations
 }
 \examples{
  ## set directory for results to be written
