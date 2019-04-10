@@ -1,7 +1,7 @@
 Package: melfuR
 Type: Package
 Title: A collection of scripts for exploratory analysis of ddRAD data
-Version: 0.01
+Version: 1.0
 Author: Chris Brauer
 Maintainer: Chris Brauer <chris.brauer@flinders.edu.au>
 Depends: R (>= 2.14), methods, ade4, adegenet, pegas
@@ -14,5 +14,5 @@ Description: A collection of scripts for exploratory analysis of ddRAD data.
     and other (hopefully) useful utilities.
 License: none
 Encoding: UTF-8
-LazyData: false
+LazyData: true
 RoxygenNote: 6.0.1.9000
