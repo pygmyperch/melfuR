@@ -7,7 +7,8 @@
 viamaris(sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = NULL)
 }
 \arguments{
-\item{extent.buffer}{(optional) number of degrees to extend raster around your samples, default = 0.5 (you may need to increase this to allow navigation around land masses that extend beyond the extent of your samples)}
+\item{extent.buffer}{(optional) number of degrees to extend raster around your samples, default = 0.5
+(you may need to increase this to allow navigation around land masses that extend beyond the extent of your samples)}
 
 \item{resolution}{(optional) the size of the raster, default = 1500 (1500 X 1500) (caution, increasing this too much will consume lots of RAM, without much benefit in accuracy)}
 
