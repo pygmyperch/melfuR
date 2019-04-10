@@ -14,5 +14,5 @@ Description: A collection of scripts for exploratory analysis of ddRAD data.
     and other (hopefully) useful utilities.
 License: none
 Encoding: UTF-8
-LazyData: true
+LazyData: false
 RoxygenNote: 6.0.1.9000
