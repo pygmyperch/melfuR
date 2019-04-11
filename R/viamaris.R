@@ -154,21 +154,15 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
 
     # build and convert raster
     cat("\npreparing raster\n")
-    minX <- min(XY360$X) - extent.buffer
-    maxX <- max(XY360$X) + extent.buffer
-    minY <- min(XY360$Y) - extent.buffer
-    maxY <- max(XY360$Y) + extent.buffer
+    minX <- XY360@bbox[1,1] - extent.buffer
+    maxX <- XY360@bbox[1,2] + extent.buffer
+    minY <- XY360@bbox[2,1] - extent.buffer
+    maxY <- XY360@bbox[2,2] + extent.buffer
 
-    #ras.extent <- as.matrix(extent(minX, maxX, minY, maxY), 'SpatialPolygons')
-    #print(ras.extent)
-    #cut.shp <- shp
-    cut.shp <- raster::crop(shp, extent(minX, maxX, minY, maxY))
-    #crs(cut.shp) <- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0 +over"
-    #cut.shp@bbox <- as.matrix(extent(minX, maxX, minY, maxY), 'SpatialPolygons')
-    print(cut.shp@bbox)
-    init.ras <- raster(nrow=resolution, ncol=resolution)
-    crs(init.ras) <- crs(cut.shp)
-    extent(init.ras) <- extent(cut.shp)
+    ras.extent <- extent(as(extent(minX, maxX, minY, maxY), 'SpatialPolygons'))
+    init.ras <- raster(nrow=resolution, ncol=resolution, ext = ras.extent)
+    cut.shp <- shp
+    cut.shp@bbox <- as.matrix(extent(init.ras))
     main.ras <- rasterize(cut.shp, init.ras)
 
 
@@ -182,18 +176,15 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
 
     # define main raster
     cat("\npreparing raster\n")
-    minX <- min(sampleXY$X) - extent.buffer
-    maxX <- max(sampleXY$X) + extent.buffer
-    minY <- min(sampleXY$Y) - extent.buffer
-    maxY <- max(sampleXY$Y) + extent.buffer
+    minX=sampleXY@bbox[1,1] - extent.buffer
+    maxX=sampleXY@bbox[1,2] + extent.buffer
+    minY=sampleXY@bbox[2,1] - extent.buffer
+    maxY=sampleXY@bbox[2,2] + extent.buffer
 
-    sample.extent <- as.matrix(extent(minX, maxX, minY, maxY), 'SpatialPolygons')
-    crs(sample.extent) <- cs
-    cut.shp <- raster::crop(shp, sample.extent)
-
-    init.ras <- raster(nrow=resolution, ncol=resolution)
-    crs(init.ras) <- crs(cut.shp)
-    extent(init.ras) <- extent(minX, maxX, minY, maxY)
+    ras.extent <- extent(as(extent(minX, maxX, minY, maxY), 'SpatialPolygons'))
+    init.ras <- raster(nrow=resolution, ncol=resolution, ext = ras.extent)
+    cut.shp <- shp
+    cut.shp@bbox <- as.matrix(extent(init.ras))
     main.ras <- rasterize(cut.shp, init.ras)
 
   }
