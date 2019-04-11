@@ -161,9 +161,10 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
 
     #ras.extent <- as.matrix(extent(minX, maxX, minY, maxY), 'SpatialPolygons')
     #print(ras.extent)
-    cut.shp <- shp
-    crs(cut.shp) <- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0 +over"
-    cut.shp@bbox <- as.matrix(extent(minX, maxX, minY, maxY), 'SpatialPolygons')
+    #cut.shp <- shp
+    cut.shp <- raster::crop(shp, extent(minX, maxX, minY, maxY))
+    #crs(cut.shp) <- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0 +over"
+    #cut.shp@bbox <- as.matrix(extent(minX, maxX, minY, maxY), 'SpatialPolygons')
     print(cut.shp@bbox)
     init.ras <- raster(nrow=resolution, ncol=resolution)
     crs(init.ras) <- crs(cut.shp)
@@ -188,7 +189,7 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
 
     sample.extent <- as.matrix(extent(minX, maxX, minY, maxY), 'SpatialPolygons')
     crs(sample.extent) <- cs
-    cut.shp <- crop(shp, sample.extent)
+    cut.shp <- raster::crop(shp, sample.extent)
 
     init.ras <- raster(nrow=resolution, ncol=resolution)
     crs(init.ras) <- crs(cut.shp)
