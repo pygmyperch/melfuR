@@ -55,7 +55,7 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
 
   # Read in Shapefile
 
-  mapfile <- readOGR(dsn="extdata", layer = "ne_10m_land")
+  mapfile <- readOGR(dsn="inst/extdata", layer = "ne_10m_land")
 
 
   # define SpatialPointsDataFrame for raw sampleXYs
