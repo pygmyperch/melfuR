@@ -115,6 +115,7 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
 
   # check for samples either side of the meridian, if TRUE, convert sample longitude from -180/180 to 0/360
   if(any(sampleXY$X < 0) && any(sampleXY$X > 0)) {
+    print("true")
 
     # convert coordinates
     XY360 <- as.matrix(cbind(sampleXY$X, sampleXY$Y))
@@ -122,6 +123,7 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
     XY360 <- as.data.frame(cbind(inds, X360[,1], XY360[,2]))
     colnames(XY360) <- c("ID", "X", "Y")
     coordinates(XY360) <- c("X", "Y")
+    proj4string(XY360)<- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0 +over"
     sp.inds <- XY360
     print(sp.inds)
 
@@ -137,19 +139,25 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
     print(maxY)
 
     ras.extent <- extent(as(extent(minX, maxX, minY, maxY), 'SpatialPolygons'))
+    print("ras.extent")
     print(ras.extent)
     init.ras <- raster(nrow=resolution, ncol=resolution, ext = ras.extent)
+    print("init.ras")
     print(init.ras)
     cut.shp <- mapfile
+    print("cut.shp")
     print(cut.shp)
     cut.shp@bbox <- as.matrix(extent(init.ras))
+    print("bbox")
     print(cut.shp@bbox)
     main.ras <- rasterize(cut.shp, init.ras)
+    print("mainras")
     print(main.ras)
 
 
 
   } else {
+    print("false")
 
     # define SpatialPointsDataFrame for sampleXYs
     coordinates(sampleXY)<- c("X", "Y")
