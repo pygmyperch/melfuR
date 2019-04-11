@@ -144,13 +144,8 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
     init.ras <- raster(nrow=resolution, ncol=resolution, ext = ras.extent)
     print("init.ras")
     print(init.ras)
-    cut.shp <- mapfile
-    print("cut.shp")
-    print(cut.shp)
-    cut.shp@bbox <- as.matrix(extent(init.ras))
-    print("bbox")
-    print(cut.shp@bbox)
-    main.ras <- rasterize(cut.shp, init.ras)
+    newmapfile <- nowrapRecenter(nowrapSpatialPolygons(mapfile))
+    main.ras <- rasterize(newmapfile, init.ras)
     print("mainras")
     print(main.ras)
 
