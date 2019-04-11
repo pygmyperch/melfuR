@@ -168,9 +168,7 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
 
     ras.extent <- extent(as(extent(minX, maxX, minY, maxY), 'SpatialPolygons'))
     init.ras <- raster(nrow=resolution, ncol=resolution, ext = ras.extent)
-    cut.shp <- mapfile
-    cut.shp@bbox <- as.matrix(extent(init.ras))
-    main.ras <- rasterize(cut.shp, init.ras)
+    main.ras <- rasterize(mapfile, init.ras)
 
   }
 
