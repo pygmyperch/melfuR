@@ -4,7 +4,8 @@
 \alias{viamaris}
 \title{calculate pairwise oceanic distances among sampling locations}
 \usage{
-viamaris(sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = NULL)
+viamaris(sampleXY, extent.buffer = NULL, resolution = NULL,
+  EPSG = NULL)
 }
 \arguments{
 \item{sampleXY}{-  a data frame with three columns: ID, X and Y (in decimal degrees)}
