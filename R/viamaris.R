@@ -163,7 +163,7 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
     #print(ras.extent)
     cut.shp <- shp
     cut.shp@bbox <- as.matrix(extent(minX, maxX, minY, maxY), 'SpatialPolygons')
-    #print(cut.shp@bbox)
+    print(cut.shp@bbox)
     init.ras <- raster(nrow=resolution, ncol=resolution)
     crs(init.ras) <- crs(cut.shp)
     extent(init.ras) <- extent(cut.shp)
