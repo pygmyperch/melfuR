@@ -55,6 +55,7 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
 
   # Read in Shapefile
   mapfile <- melfuR:::wldmap
+  print(mapfile)
 
 
   # define SpatialPointsDataFrame for raw sampleXYs
@@ -122,6 +123,7 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
     colnames(XY360) <- c("ID", "X", "Y")
     coordinates(XY360) <- c("X", "Y")
     sp.inds <- XY360
+    print(sp.inds)
 
     # build and convert raster
     cat("\npreparing raster\n")
@@ -129,12 +131,21 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
     maxX <- XY360@bbox[1,2] + extent.buffer
     minY <- XY360@bbox[2,1] - extent.buffer
     maxY <- XY360@bbox[2,2] + extent.buffer
+    print(minX)
+    print(maxX)
+    print(minY)
+    print(maxY)
 
     ras.extent <- extent(as(extent(minX, maxX, minY, maxY), 'SpatialPolygons'))
+    print(ras.extent)
     init.ras <- raster(nrow=resolution, ncol=resolution, ext = ras.extent)
+    print(init.ras)
     cut.shp <- mapfile
+    print(cut.shp)
     cut.shp@bbox <- as.matrix(extent(init.ras))
+    print(cut.shp@bbox)
     main.ras <- rasterize(cut.shp, init.ras)
+    print(main.ras)
 
 
 
