@@ -54,23 +54,8 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
   nm <- deparse(substitute(sampleXY))
 
   # Read in Shapefile
-  #stfile <- system.file("extdata/mapfiles", package="melfuR")
-  #shp <- readOGR(stfile, "ne_10m_land")
-  #devtools::use_data(shp, internal = TRUE)
 
-  #shp <- melfuR:::shp
-  # get shp file
-  if(!file.exists("mapfiles/ne_10m_land.shp")) {
-    download.file("https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_land.zip", "ne_10m_land.zip")
-    # Unzip file
-    unzip("ne_10m_land.zip", exdir = "mapfiles")
-    # Read in Shapefile
-    shp <- readOGR("mapfiles", "ne_10m_land")
-
-  } else {
-    shp <- readOGR("mapfiles", "ne_10m_land")
-
-  }
+  mapfile <- readOGR(dsn="extdata", layer = "ne_10m_land")
 
 
   # define SpatialPointsDataFrame for raw sampleXYs
@@ -148,7 +133,7 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
 
     ras.extent <- extent(as(extent(minX, maxX, minY, maxY), 'SpatialPolygons'))
     init.ras <- raster(nrow=resolution, ncol=resolution, ext = ras.extent)
-    cut.shp <- shp
+    cut.shp <- mapfile
     cut.shp@bbox <- as.matrix(extent(init.ras))
     main.ras <- rasterize(cut.shp, init.ras)
 
@@ -170,7 +155,7 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
 
     ras.extent <- extent(as(extent(minX, maxX, minY, maxY), 'SpatialPolygons'))
     init.ras <- raster(nrow=resolution, ncol=resolution, ext = ras.extent)
-    cut.shp <- shp
+    cut.shp <- mapfile
     cut.shp@bbox <- as.matrix(extent(init.ras))
     main.ras <- rasterize(cut.shp, init.ras)
 
