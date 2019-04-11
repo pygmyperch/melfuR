@@ -54,8 +54,7 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
   nm <- deparse(substitute(sampleXY))
 
   # Read in Shapefile
-
-  mapfile <- readOGR(dsn="inst/extdata", layer = "ne_10m_land")
+  mapfile <- melfuR:::wldmap
 
 
   # define SpatialPointsDataFrame for raw sampleXYs
