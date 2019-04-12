@@ -283,18 +283,18 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
 
 
   kmlPoints(rawXY, kmlfile = paste0(as.character(nm),"_XY.kml"), name = sp.inds$ID,
-            icon = "inst/extdata/red-pushpin.png")
+            icon = "/extdata/red-pushpin.png")
 
 
   if (exists("wet.sp.inds")) {
 
     if(exists("adj.wet.XYkml")) {
       kmlPoints(adj.wet.XYkml, kmlfile = paste0(as.character(nm),"_adjustedXY.kml"), name = sp.inds$ID,
-                icon = "inst/extdata/grn-pushpin.png")
+                icon = "/extdata/grn-pushpin.png")
 
     } else {
       kmlPoints(wet.sp.inds, kmlfile = paste0(as.character(nm),"_adjustedXY.kml"), name = sp.inds$ID,
-                icon = "inst/extdata/grn-pushpin.png")
+                icon = "/extdata/grn-pushpin.png")
     }
 
   }
