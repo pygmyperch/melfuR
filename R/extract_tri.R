@@ -31,13 +31,13 @@ extract_tri <- function (square.matrix, result.file, upper = FALSE) {
   if (!upper) {
     #Hide upper triangle
     top <- sqmat
-    top[upper.tri(sqmat)] <-""
+    top[upper.tri(sqmat, diag = TRUE)] <-""
     trimat <- as.data.frame(top)
     
   } else {
     #Hide lower triangle
     lower <- sqmat
-    lower[lower.tri(sqmat, diag=TRUE)] <-""
+    lower[lower.tri(sqmat, diag = TRUE)] <-""
     trimat <- as.data.frame(lower)
     
   }
