@@ -14,7 +14,7 @@ extract_tri(square.matrix, result.file, upper = FALSE)
 \item{upper}{a logical indicating that you want to keep the upper triangle (default=FALSE)}
 }
 \value{
-a trimatrix objecgt and .csv file
+a trimatrix object and .csv file
 }
 \description{
 extract upper or lower triangle from a square matrix
@@ -24,8 +24,9 @@ extract upper or lower triangle from a square matrix
  setwd("path/to/working/directory")
 
  # load example matrix
- example.mat <- matrix(c(0,3,5,6, 3,0,6,6, 5,6,0,3, 6,6,3,0), nrow = 4, ncol = 4, 
-              dimnames = list(c("A", "B", "C", "D"), c("A", "B", "C", "D")))
+ example.mat <- matrix(c(0,3,5,6, 3,0,6,6, 5,6,0,3, 6,6,3,0), 
+                nrow = 4, ncol = 4, dimnames = list(c("A", "B", "C", "D"), 
+                c("A", "B", "C", "D")))
 
  # extract lower trimarix
  Ltrimat <- extract_tri(sqmat, lowermat)

@@ -3,7 +3,7 @@
 #' @param square.matrix a pairwise matrix object
 #' @param result.file a pairwise matrix object
 #' @param upper a logical indicating that you want to keep the upper triangle (default=FALSE)
-#' @return a trimatrix objecgt and .csv file
+#' @return a trimatrix object and .csv file
 #' @author Chris Brauer
 #' @export
 #' @examples
@@ -11,8 +11,9 @@
 #'  setwd("path/to/working/directory")
 #'
 #'  # load example matrix
-#'  example.mat <- matrix(c(0,3,5,6, 3,0,6,6, 5,6,0,3, 6,6,3,0), nrow = 4, ncol = 4, 
-#'               dimnames = list(c("A", "B", "C", "D"), c("A", "B", "C", "D")))
+#'  example.mat <- matrix(c(0,3,5,6, 3,0,6,6, 5,6,0,3, 6,6,3,0), 
+#'                 nrow = 4, ncol = 4, dimnames = list(c("A", "B", "C", "D"), 
+#'                 c("A", "B", "C", "D")))
 #'
 #'  # extract lower trimarix
 #'  Ltrimat <- extract_tri(sqmat, lowermat)
@@ -25,7 +26,7 @@
 
 extract_tri <- function (square.matrix, result.file, upper = FALSE) {
   
-  sqmat <- as.matrix(sqmat)
+  sqmat <- as.matrix(square.matrix)
   
   if (!upper) {
     #Hide upper triangle
