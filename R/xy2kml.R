@@ -30,7 +30,7 @@ xy2kml <- function (sampleXY) {
   spXY <- spTransform(spXY, CRS= cs)
 
 
-  kmlPoints(sampleXY, kmlfile = paste0(as.character(nm),"_XY.kml"), name = sampleXY$ID,
+  kmlPoints(spXY, kmlfile = paste0(as.character(nm),"_XY.kml"), name = spXY$ID,
             icon = "http://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png")
 
 
