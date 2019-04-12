@@ -34,8 +34,8 @@ extract upper or lower triangle from a square matrix
  # extract lower trimarix
  Lmat <- extract_tri(example.mat, "lowermat")
  
- # extract upper trimarix
- Umat <- extract_tri(example.mat, "uppermat", upper = TRUE)
+ # extract upper trimarix without the diagonal
+ Umat <- extract_tri(example.mat, "uppermat", upper = TRUE, keep.diag = FALSE)
 }
 \author{
 Chris Brauer
