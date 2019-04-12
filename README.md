@@ -1,5 +1,5 @@
 # melfuR
-A collection of R scripts for exploratory analysis of ddRAD data and other (hopefully) useful utilities.
+A collection of R scripts for exploratory analysis of ddRAD data, spatial analyses and other (hopefully) useful utilities.
 
 # How to Install
 
@@ -9,7 +9,6 @@ First install devtools
 
 ```r
 install.packages("devtools")
-library("devtools")
 ```
 
 Then install melfuR
@@ -22,14 +21,18 @@ A quick overview of some of the key functions:
 
 * `rainbow.genind`: An example genind object consisting of 500 loci and 249 individuals from 14 populations of *Melanotaenia fluviatilis* in the Murray-Darling Basin. 
 
-* `subset_snps`: A function to subset a structure file based on a list of loci
-
 * `rainbow.env`: Environmental data for 14 populations of *Melanotaenia fluviatilis* in the Murray-Darling Basin. 
 
-Usage:
+* `run.gINLAnd`: A wrapper function to run gINLAnd GEA analysis on a genind object
 
-```r
-data(rainbow.genind)
-test_dapc(rainbow.genind)
-```
+* `HWE_filter`: filter loci for HWE by population using a genind object
+
+* `subset_snps`: subset a structure file based on a list of loci
+
+* `xy2kml`: convert a set of XY coordinates to a .kml file for use with Google Earth
+
+* `viamaris`: calculate pairwise oceanic distances from a set of XY coordinates
+
+* `extract_tri`: extract upper or lower triangle from a square matrix
+
 
