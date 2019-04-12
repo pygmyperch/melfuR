@@ -1,7 +1,7 @@
 #' extract upper or lower triangle from a square matrix
 #'
 #' @param square.matrix a pairwise matrix object
-#' @param result.file a pairwise matrix object
+#' @param result.file a character string name of your result file
 #' @param upper a logical indicating that you want to keep the upper triangle (default=FALSE)
 #' @return a trimatrix object and .csv file
 #' @author Chris Brauer
@@ -16,10 +16,10 @@
 #'                 c("A", "B", "C", "D")))
 #'
 #'  # extract lower trimarix
-#'  Ltrimat <- extract_tri(sqmat, lowermat)
+#'  Lmat <- extract_tri(example.mat, "lowermat")
 #'  
 #'  # extract upper trimarix
-#'  Utrimat <- extract_tri(example.mat, uppermat, upper = TRUE)
+#'  Umat <- extract_tri(example.mat, "uppermat", upper = TRUE)
 
 
 
