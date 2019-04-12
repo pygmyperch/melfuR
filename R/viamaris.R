@@ -21,7 +21,7 @@
 #'  ## set directory for results to be written
 #'  setwd("path/to/working/directory")
 #'
-#'  # load example structure file
+#'  # load example coordinate file
 #'  data(Tursiops.XY)
 #'
 #'  # run analysis
