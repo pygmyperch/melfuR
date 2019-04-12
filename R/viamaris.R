@@ -31,7 +31,6 @@
 
 viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = NULL) {
 
-  cat(match.call())
 
   # define some variables
   inds <- as.data.frame(sampleXY$ID)

@@ -22,7 +22,7 @@ A quick overview of some of the key functions:
 
 * `rainbow.genind`: An example genind object consisting of 500 loci and 249 individuals from 14 populations of *Melanotaenia fluviatilis* in the Murray-Darling Basin. 
 
-* `test_dapc`: A function to run a simple DAPC on the example SNP data using the ADEGENET package.
+* `subset_snps`: A function to subset a structure file based on a list of loci
 
 * `rainbow.env`: Environmental data for 14 populations of *Melanotaenia fluviatilis* in the Murray-Darling Basin. 
 
