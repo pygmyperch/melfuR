@@ -3,6 +3,7 @@
 #' @param square.matrix a pairwise matrix object
 #' @param result.file a character string name of your result file
 #' @param upper a logical indicating that you want to keep the upper triangle (default=FALSE)
+#' @param keep.diag a logical indicating that you want to keep the diagonal in your trimat (default=TRUE)
 #' @return a trimatrix object and .csv file
 #' @author Chris Brauer
 #' @export
@@ -24,21 +25,46 @@
 
 
 
-extract_tri <- function (square.matrix, result.file, upper = FALSE) {
+extract_tri <- function (square.matrix, result.file, upper = FALSE, keep.diag = TRUE) {
   
   sqmat <- as.matrix(square.matrix)
   
-  if (!upper) {
-    #Hide upper triangle
-    top <- sqmat
-    top[upper.tri(sqmat)] <-""
-    trimat <- as.data.frame(top)
+  if (!keep.diag) {
+    
+    if (!upper) {
+      #Hide upper triangle
+      top <- sqmat
+      top[upper.tri(sqmat, diag = TRUE)] <-""
+      trimat <- as.data.frame(top)
+      
+    } else {
+      #Hide lower triangle
+      lower <- sqmat
+      lower[lower.tri(sqmat, diag = TRUE)] <-""
+      trimat <- as.data.frame(lower)
+      
+    }
+    
+    
+    
     
   } else {
-    #Hide lower triangle
-    lower <- sqmat
-    lower[lower.tri(sqmat)] <-""
-    trimat <- as.data.frame(lower)
+
+    if (!upper) {
+      #Hide upper triangle
+      top <- sqmat
+      top[upper.tri(sqmat)] <-""
+      trimat <- as.data.frame(top)
+      
+    } else {
+      #Hide lower triangle
+      lower <- sqmat
+      lower[lower.tri(sqmat)] <-""
+      trimat <- as.data.frame(lower)
+      
+    }
+    
+    
     
   }
   

@@ -4,7 +4,8 @@
 \alias{extract_tri}
 \title{extract upper or lower triangle from a square matrix}
 \usage{
-extract_tri(square.matrix, result.file, upper = FALSE)
+extract_tri(square.matrix, result.file, upper = FALSE,
+  keep.diag = TRUE)
 }
 \arguments{
 \item{square.matrix}{a pairwise matrix object}
@@ -12,6 +13,8 @@ extract_tri(square.matrix, result.file, upper = FALSE)
 \item{result.file}{a character string name of your result file}
 
 \item{upper}{a logical indicating that you want to keep the upper triangle (default=FALSE)}
+
+\item{keep.diag}{a logical indicating that you want to keep the diagonal in your trimat (default=TRUE)}
 }
 \value{
 a trimatrix object and .csv file
