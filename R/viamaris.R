@@ -31,6 +31,7 @@
 
 viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = NULL) {
 
+  cat(match.call())
 
   # define some variables
   inds <- as.data.frame(sampleXY$ID)
@@ -55,7 +56,6 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
 
   # Read in Shapefile
   mapfile <- melfuR:::wldmap
-  print(mapfile)
 
 
   # define SpatialPointsDataFrame for raw sampleXYs
@@ -115,7 +115,6 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
 
   # check for samples either side of the meridian, if TRUE, convert sample longitude from -180/180 to 0/360
   if(any(sampleXY$X < 0) && any(sampleXY$X > 0)) {
-    print("true")
 
     # convert coordinates
     XY360 <- as.matrix(cbind(sampleXY$X, sampleXY$Y))
@@ -125,7 +124,6 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
     coordinates(XY360) <- c("X", "Y")
     proj4string(XY360)<- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0 +over"
     sp.inds <- XY360
-    print(sp.inds)
 
     # build and convert raster
     cat("\npreparing raster\n")
@@ -133,26 +131,15 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
     maxX <- XY360@bbox[1,2] + extent.buffer
     minY <- XY360@bbox[2,1] - extent.buffer
     maxY <- XY360@bbox[2,2] + extent.buffer
-    print(minX)
-    print(maxX)
-    print(minY)
-    print(maxY)
 
     ras.extent <- extent(as(extent(minX, maxX, minY, maxY), 'SpatialPolygons'))
-    print("ras.extent")
-    print(ras.extent)
     init.ras <- raster(nrow=resolution, ncol=resolution, ext = ras.extent)
-    print("init.ras")
-    print(init.ras)
     newmapfile <- nowrapRecenter(nowrapSpatialPolygons(mapfile))
     main.ras <- rasterize(newmapfile, init.ras)
-    print("mainras")
-    print(main.ras)
 
 
 
   } else {
-    print("false")
 
     # define SpatialPointsDataFrame for sampleXYs
     coordinates(sampleXY)<- c("X", "Y")
@@ -240,7 +227,7 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
 
   colnames(cost) <- t(inds)
   rownames(cost) <- inds[,1]
-  cat("\nYour distance matrix is ready, have a nice day!\n")
+  cat("\nYour results are ready, have a nice day!\n")
 
 
   # build result object
@@ -283,18 +270,18 @@ viamaris <- function (sampleXY, extent.buffer = NULL, resolution = NULL, EPSG = 
 
 
   kmlPoints(rawXY, kmlfile = paste0(as.character(nm),"_XY.kml"), name = sp.inds$ID,
-            icon = "extdata/red-pushpin.png")
+            icon = "http://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png")
 
 
   if (exists("wet.sp.inds")) {
 
     if(exists("adj.wet.XYkml")) {
       kmlPoints(adj.wet.XYkml, kmlfile = paste0(as.character(nm),"_adjustedXY.kml"), name = sp.inds$ID,
-                icon = "extdata/grn-pushpin.png")
+                icon = "http://maps.google.com/mapfiles/kml/pushpin/grn-pushpin.png")
 
     } else {
       kmlPoints(wet.sp.inds, kmlfile = paste0(as.character(nm),"_adjustedXY.kml"), name = sp.inds$ID,
-                icon = "extdata/grn-pushpin.png")
+                icon = "http://maps.google.com/mapfiles/kml/pushpin/grn-pushpin.png")
     }
 
   }
