@@ -2,6 +2,7 @@
 
 export(HWE_filter)
 export(extract_tri)
+export(percent_poly)
 export(run.gINLAnd)
 export(subset_snps)
 export(viamaris)
