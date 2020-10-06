@@ -1,4 +1,4 @@
-#' This function calculates the % polymorphic loci per population from a genind object
+#' This function calculates the percent polymorphic loci per population from a genind object
 #'
 #' @param input.file A genind object
 #' @keywords genetic diversity polymorphic loci
@@ -10,7 +10,7 @@
 #'  ## load the example data
 #'  data(rainbow.genind)
 #'
-#'  # calculate the % polymorphic loci per population
+#'  # calculate the percent polymorphic loci per population
 #'  res <- percent_poly(rainbow.genind)
 #'
 

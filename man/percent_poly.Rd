@@ -2,7 +2,7 @@
 % Please edit documentation in R/percent_poly.R
 \name{percent_poly}
 \alias{percent_poly}
-\title{This function calculates the % polymorphic loci per population from a genind object}
+\title{This function calculates the percent polymorphic loci per population from a genind object}
 \usage{
 percent_poly(genind)
 }
@@ -10,7 +10,7 @@ percent_poly(genind)
 \item{input.file}{A genind object}
 }
 \description{
-This function calculates the % polymorphic loci per population from a genind object
+This function calculates the percent polymorphic loci per population from a genind object
 }
 \examples{
  ## set directory for results to be written
@@ -19,7 +19,7 @@ This function calculates the % polymorphic loci per population from a genind obj
  ## load the example data
  data(rainbow.genind)
 
- # calculate the \% polymorphic loci per population
+ # calculate the percent polymorphic loci per population
  res <- percent_poly(rainbow.genind)
 
 }
