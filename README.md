@@ -29,6 +29,8 @@ A quick overview of some of the key functions:
 
 * `percent_poly`: calculate the % polymorphic loci per population from a genind object
 
+* `missing_data`: calculate the % of missing genotypes per population from a genind object
+
 * `subset_snps`: subset a structure file based on a list of loci
 
 * `xy2kml`: convert a set of XY coordinates to a .kml file for use with Google Earth
