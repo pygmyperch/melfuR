@@ -10,7 +10,7 @@
 #'  ## load the example data
 #'  data(rainbow.genind)
 #'
-#'  # calculate the percent polymorphic loci per population
+#'  # calculate Na, %poly, Ho, He, and Fis (with 95%CIs) per population
 #'  res <- diversity_stats(rainbow.genind)
 #'
 
@@ -43,7 +43,7 @@ diversity_stats <- function(genind) {
   
   
   # split input into list of data.frames by pop factor and calc %poly loci
-  poly.lst <- seppop(geno)
+  poly.lst <- seppop(genind)
   percent.poly <- lapply(poly.lst, function(x) {(sum(isPoly(x)))/(dim(x@tab)[2]/2-(length(which(nAll(x)==0))))*100})
   percent.poly <- data.frame(sapply(percent.poly,c))
   

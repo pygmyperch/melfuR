@@ -19,7 +19,7 @@ This function calculates basic genetic diversity stats from a genind object
  ## load the example data
  data(rainbow.genind)
 
- # calculate the percent polymorphic loci per population
+ # calculate Na, \%poly, Ho, He, and Fis (with 95\%CIs) per population
  res <- diversity_stats(rainbow.genind)
 
 }
