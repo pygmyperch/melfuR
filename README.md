@@ -29,6 +29,8 @@ A quick overview of some of the key functions:
 
 * `percent_poly`: calculate the % polymorphic loci per population from a genind object
 
+* `diversity_stats`: calculate basic genetic diversity stats from a genind object
+
 * `missing_data`: calculate the % of missing genotypes per population from a genind object
 
 * `subset_snps`: subset a structure file based on a list of loci
