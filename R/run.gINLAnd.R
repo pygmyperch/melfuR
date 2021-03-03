@@ -20,8 +20,8 @@
 #'  data(rainbow.genind)
 #'  data(rainbow.env)
 #'
-#'  # subset rainbow.genind to 200 loci
-#'  gen100 <- rainbow.genind[,1:200]
+#'  # subset rainbow.genind to 500 loci
+#'  gen500 <- rainbow.genind[,1:1000]
 #'
 #'  # get xy coordinates
 #'  coords <- rainbow.env[,2:3]
@@ -30,7 +30,7 @@
 #'  tempPC1 <- as.data.frame(rainbow.env[,4])
 #'
 #'  ## run gINLAnd
-#'  run.gINLAnd(gen100, "res.tempPC1", 10, coords, tempPC1)
+#'  run.gINLAnd(gen500, "res.tempPC1", 10, coords, tempPC1)
 
 run.gINLAnd <- function(input.file, result.file, cutoff, coord, env.var){
 
