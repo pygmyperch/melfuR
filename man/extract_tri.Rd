@@ -4,8 +4,7 @@
 \alias{extract_tri}
 \title{extract upper or lower triangle from a square matrix}
 \usage{
-extract_tri(square.matrix, result.file, upper = FALSE,
-  keep.diag = TRUE)
+extract_tri(square.matrix, result.file, upper = FALSE, keep.diag = TRUE)
 }
 \arguments{
 \item{square.matrix}{a pairwise matrix object}

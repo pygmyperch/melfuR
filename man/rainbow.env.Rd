@@ -4,7 +4,9 @@
 \name{rainbow.env}
 \alias{rainbow.env}
 \title{Environmental data for Melanotaenia fluviatilis sampling sites in the Murray-Darling Basin}
-\format{A table with location names, x and y coordinates in decimal degrees and six PCA axes describing hydroclimatic variation}
+\format{
+A table with location names, x and y coordinates in decimal degrees and six PCA axes describing hydroclimatic variation
+}
 \usage{
 rainbow.env
 }
