@@ -112,8 +112,8 @@ viamaris <- function (sampleXY, extent.buffer = NULL)
   }
   main.ras <- is.na(main.ras)
   main.ras[main.ras == 0] <- NA
-  plot(main.ras, breaks = c(0, 1), col = "blue", legend = FALSE)
-  plot(sp.inds, col = "red", cex = 1, add = T)
+  raster::plot(main.ras, breaks = c(0, 1), col = "blue", legend = FALSE)
+  raster::plot(sp.inds, col = "red", cex = 1, add = T)
   cat("\nanalysing raster\n")
   tr <- geoCorrection(transition(main.ras, function(x) 1/mean(x),
                                  8), scl = FALSE)
