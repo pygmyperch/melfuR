@@ -143,7 +143,7 @@ viamaris <- function (sampleXY, extent.buffer = NULL)
     proj4string(IND.wetXY.coord) <- wkt
     wet.sp.inds <- IND.wetXY.coord
     adj.XY <- as.matrix(coordinates(wet.sp.inds))
-    plot(wet.sp.inds, col = "limegreen", cex = 1, pch = 16,
+    raster::plot(wet.sp.inds, col = "limegreen", cex = 1, pch = 16,
          add = T)
     cost <- as.matrix(costDistance(tr, wet.sp.inds)/1000)
     if (any(adj.XY[, 1] > 180)) {
@@ -162,7 +162,7 @@ viamaris <- function (sampleXY, extent.buffer = NULL)
     wet.sp.inds <- NULL
     adj.XY <- NULL
     XY <- as.matrix(coordinates(sp.inds))
-    plot(sp.inds, col = "limegreen", cex = 1, pch = 16, add = T)
+    raster::plot(sp.inds, col = "limegreen", cex = 1, pch = 16, add = T)
     cost <- as.matrix(costDistance(tr, sp.inds)/1000)
   }
   colnames(cost) <- t(inds)
