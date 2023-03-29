@@ -18,8 +18,8 @@
 #'  # load example coordinate file
 #'  data(rainbow.genind)
 #'
-#'  # run analysis
-#'  imputed.gi <- impute.data(rainbow.genind)
+#'  # run analysis for K=6
+#'  imputed.gi <- impute.data(rainbow.genind, K = 6)
 
 
 
