@@ -4,7 +4,7 @@
 \alias{impute.data}
 \title{impute missing genotypes based on pop structure characterised using snmf}
 \usage{
-impute.data(input.file, K, no_cores)
+impute.data(input.file, K = 1, no_cores = 1)
 }
 \arguments{
 \item{input.file}{A genind object}
@@ -14,7 +14,7 @@ impute.data(input.file, K, no_cores)
 \item{no_cores}{the number of cores to use for the analysis}
 }
 \value{
-imputed.genind               a genind object with missing data imputed
+a genind object with missing data imputed
 }
 \description{
 impute missing genotypes based on pop structure characterised using snmf
@@ -26,8 +26,8 @@ impute missing genotypes based on pop structure characterised using snmf
  # load example coordinate file
  data(rainbow.genind)
 
- # run analysis
- imputed.gi <- impute.data(rainbow.genind)
+ # run analysis for K=6
+ imputed.gi <- impute.data(rainbow.genind, K = 6)
 }
 \author{
 Chris Brauer
