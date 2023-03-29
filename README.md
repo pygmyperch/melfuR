@@ -14,12 +14,7 @@ ___
 
 
 
-#### http://www.molecularecology.flinders.edu.au/&nbsp; &nbsp; [![Alt text](../master/images/fb3.png)](https://www.facebook.com/molecularecologylab/)&nbsp; &nbsp; &nbsp; &nbsp; Chris Brauer&nbsp; [![Alt text](../master/images/mail2.png)](mailto:chris.brauer@flinders.edu.au)&nbsp; &nbsp; [![Alt text](../master/images/twitter2.png)](https://twitter.com/pygmyperch)
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="../master/images/fb3.png">
-  <img alt="Text changing depending on mode. Light: 'So light!' Dark: 'So dark!'" src="../master/images/mail2.png">
-</picture>
+#### http://www.molecularecology.flinders.edu.au/&nbsp; &nbsp; [![Alt text](../master/images/fb3.png)](https://www.facebook.com/molecularecologylab/)&nbsp; &nbsp; &nbsp; &nbsp; Chris Brauer&nbsp; [![Alt text](../master/images/mail3.png)](mailto:chris.brauer@flinders.edu.au)&nbsp; &nbsp; [![Alt text](../master/images/twitter2.png)](https://twitter.com/pygmyperch)
 ___
 <br/>
 
