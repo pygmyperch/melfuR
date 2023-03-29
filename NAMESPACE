@@ -3,6 +3,7 @@
 export(HWE_filter)
 export(diversity_stats)
 export(extract_tri)
+export(impute.data)
 export(missing_data)
 export(percent_poly)
 export(run.gINLAnd)
