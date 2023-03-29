@@ -23,70 +23,59 @@
 
 
 
-impute.data <- function(input.file, K, no_cores) {
+impute.data <- function(input.file, K=1, no_cores=1) {
+
 
   #check required packages are installed and loaded
-  packages <- c("LEA", "pegas", "plyr", "foreach", "doParallel")
-
+  packages <- "LEA"
   for(package in packages){
-
     # if package is installed locally, load
     if(package %in% rownames(installed.packages()))
       do.call('require', list(package))
-
     else {
       stop("some required packages not loaded")
     }
   }
 
 
-
-  alleles <- MC_dart.gi@tab
+  alleles <- input.file@tab
   snps <- alleles[,seq(1,ncol(alleles),2)]
-  colnames(snps) <- locNames(MC_dart.gi)
-
-
+  colnames(snps) <- locNames(input.file)
   md <- round((sum(is.na(snps)))/(dim(snps)[1]*dim(snps)[2])*100, digits = 2)
   cat(paste0("Total missing data = "),md,"%\n")
+  write.lfmm(snps, "dat.lfmm")
+  lfmm.obj = read.lfmm("dat.lfmm")
 
-  write.lfmm(snps, "NER.lfmm")
-  lfmm.obj = read.lfmm("NER.lfmm")
-
-  project.snmf = snmf("NER.lfmm", K = K,
+  project.snmf = snmf("dat.lfmm", K = K,
                       entropy = TRUE, repetitions = 10, seed = 42, CPU = no_cores,
                       project = "new")
-
   # select the run with the lowest cross-entropy value
   best = which.min(cross.entropy(project.snmf, K = K))
 
+
   # Impute the missing genotypes
-  impute(project.snmf, "NER.lfmm", method = 'mode', K = K, run = best)
-
-  imputed.snps <- read.lfmm("NER.lfmm_imputed.lfmm")
-
-
+  impute(project.snmf, "dat.lfmm", method = 'mode', K = K, run = best)
+  imputed.snps <- read.lfmm("dat.lfmm_imputed.lfmm")
   dim(imputed.snps)
   #imputed.snps[1:10,1:10]
-  colnames(imputed.snps) <- locNames(MC_dart.gi)
-  rownames(imputed.snps) <- indNames(MC_dart.gi)
+  colnames(imputed.snps) <- locNames(input.file)
+  rownames(imputed.snps) <- indNames(input.file)
+
   # check total % missing data
   md2 <- (sum(is.na(imputed.snps)))/(dim(imputed.snps)[1]*dim(imputed.snps)[2])*100
+  cat(paste0("Total missing data was = "),md,"%\n")
   cat(paste0("Total missing data now = "),md2,"%\n")
 
 
   imputed.snps2 <- 2-imputed.snps
-
   #create indexes for the desired order
   x <- order(c(1:ncol(imputed.snps), 1:ncol(imputed.snps2)))
-
   #cbind d1 and d2, interleaving columns with x
   dat <- cbind(imputed.snps, imputed.snps2)[,x]
-  colnames(dat) <- colnames(MC_dart.gi@tab)
+  colnames(dat) <- colnames(input.file@tab)
 
-
-  imputed.genind <- genind
+  imputed.genind <- input.file
   imputed.genind@tab <- dat
   mode(imputed.genind@tab) <- "integer"
-
   return(imputed.genind)
 }
