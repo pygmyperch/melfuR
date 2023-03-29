@@ -1,5 +1,24 @@
-# melfuR
+# melfuR – an R package for 
 A collection of R scripts for exploratory analysis of ddRAD data, spatial analyses and other (hopefully) useful utilities.
+
+These are mostly just wrapper scripts to simplify running basic pop-gen analyses using a single format (adegenet: genind)
+\
+The code is characteristically ugly :dizzy_face: but feel free to use/modify whatever you find useful
+
+<br/>
+<br/>
+
+
+___
+[![Alt text](../master/images/melfu_logo.png)](http://www.molecularecology.flinders.edu.au/)
+
+
+
+#### http://www.molecularecology.flinders.edu.au/&nbsp; &nbsp; [![Alt text](../master/images/fb3.png)](https://www.facebook.com/molecularecologylab/)&nbsp; &nbsp; &nbsp; &nbsp; Chris Brauer&nbsp; [![Alt text](../master/images/mail2.png)](mailto:chris.brauer@flinders.edu.au)&nbsp; &nbsp; [![Alt text](../master/images/twitter2.png)](https://twitter.com/pygmyperch)
+___
+<br/>
+
+
 
 # How to Install
 
@@ -26,6 +45,8 @@ A quick overview of some of the key functions:
 * `run.gINLAnd`: A wrapper function to run gINLAnd GEA analysis on a genind object
 
 * `HWE_filter`: filter loci for HWE by population using a genind object
+
+* `impute.data`: impute missing genotypes in a genind object
 
 * `percent_poly`: calculate the % polymorphic loci per population from a genind object
 
