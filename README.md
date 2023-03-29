@@ -1,11 +1,5 @@
-# melfuR – an R package for 
-A collection of R scripts for exploratory analysis of ddRAD data, spatial analyses and other (hopefully) useful utilities.
+# melfuR
 
-These are mostly just wrapper scripts to simplify running basic pop-gen analyses using a single format (adegenet: genind)
-\
-The code is characteristically ugly :dizzy_face: but feel free to use/modify whatever you find useful
-
-<br/>
 <br/>
 
 
@@ -18,7 +12,13 @@ ___
 ___
 <br/>
 
+A collection of R scripts for exploratory analysis of ddRAD data, spatial analyses and other (hopefully) useful utilities.
 
+These are mostly just wrapper scripts to simplify running basic pop-gen analyses using a single format (adegenet: genind)
+\
+The code is characteristically ugly :dizzy_face: but feel free to use/modify whatever you find useful
+
+<br/>
 
 # How to Install
 
