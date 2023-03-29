@@ -5,7 +5,7 @@
 #' @param K the number of predetermined clusters in your data (suggest using smnf, ADMIXTURE or similar to explore first)
 #' @param no_cores the number of cores to use for the analysis
 #'
-#' @return imputed.genind               a genind object with missing data imputed
+#' @return a genind object with missing data imputed
 #'
 #'
 #' @author Chris Brauer
