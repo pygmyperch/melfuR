@@ -1,8 +1,3 @@
-# melfuR
-
-<br/>
-
-
 ___
 [![Alt text](../master/images/melfu_logo.png)](http://www.molecularecology.flinders.edu.au/)
 
@@ -11,6 +6,11 @@ ___
 ## http://www.molecularecology.flinders.edu.au/&nbsp; &nbsp; [![Alt text](../master/images/fb3.png)](https://www.facebook.com/molecularecologylab/)&nbsp; &nbsp; &nbsp; &nbsp; <span style="font-size:larger;">Chris Brauer</span>&nbsp; [![Alt text](../master/images/mail3.png)](mailto:chris.brauer@flinders.edu.au)&nbsp; &nbsp; [![Alt text](../master/images/twitter2.png)](https://twitter.com/pygmyperch)
 ___
 <br/>
+
+# melfuR
+
+<br/>
+
 
 A collection of R scripts for exploratory analysis of ddRAD data, spatial analyses and other (hopefully) useful utilities.
 
