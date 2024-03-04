@@ -4,8 +4,8 @@ Title: A collection of scripts for exploratory analysis of ddRAD data
 Version: 0.9
 Author: Chris Brauer
 Maintainer: Chris Brauer <chris.brauer@flinders.edu.au>
-Depends: R (>= 2.14), methods, ade4, adegenet, pegas, sp, sf, rgdal, rgeos, raster, gdistance, maptools, hierfstat
-Suggests: pegas, akima, maps, splancs, tripack, testthat, poppr
+Depends: R (>= 2.14), methods, ade4, adegenet, pegas, sp, sf, raster, gdistance, hierfstat
+Suggests: pegas, akima, maps, splancs, tripack, testthat, poppr, rgdal, rgeos, maptools
 Imports: utils, stats, grDevices, MASS, igraph, ape, shiny, ggplot2,
     seqinr, parallel, spdep, boot, reshape2, dplyr (>= 0.4.1),
     vegan, plyr, foreach, doParallel, sp
