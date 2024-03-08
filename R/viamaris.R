@@ -30,8 +30,8 @@ viamaris <- function (sampleXY, extent.buffer = NULL)
 {
   inds <- as.data.frame(sampleXY$ID)
   XY <- as.matrix(cbind(sampleXY$X, sampleXY$Y))
-  if (is.null(extent.buffer))
-    extent.buffer <- 0.5
+  if (is.null(extent.buffer)) {
+    extent.buffer <- 0.5}
 
   resolution <- 1500
 
@@ -39,11 +39,14 @@ viamaris <- function (sampleXY, extent.buffer = NULL)
 
   mapfile <- melfuR:::wldmap
   mapfile.sf <- as(mapfile, "sf")
-  wkt <- comment(raster::crs(mapfile.sf))
+  mapfile.sf <- st_transform(mapfile.sf, 4326)
+  #wkt <- comment(raster::crs(mapfile.sf))
 
-  rawXY <- as.data.frame(sampleXY)
-  coordinates(rawXY) <- c("X", "Y")
-  proj4string(rawXY) <- wkt
+  # rawXY <- as.data.frame(sampleXY)
+  # coordinates(rawXY) <- c("X", "Y")
+  # proj4string(rawXY) <- wkt
+  rawXY <- st_as_sf(sampleXY, coords = c("X", "Y"), crs = 4326)
+  #rawXY <- as(rawXY, "Spatial")
   nearestWater <- function(points, raster, max_distance) {
     nearest <- function(lis, raster) {
       neighbours <- matrix(lis[[1]], ncol = 2)
@@ -51,8 +54,7 @@ viamaris <- function (sampleXY, extent.buffer = NULL)
       land <- !is.na(neighbours[, 2])
       if (!any(land)) {
         return(c(NA, NA))
-      }
-      else {
+      } else {
         coords <- xyFromCell(raster, neighbours[land,
                                                 1])
         if (nrow(coords) == 1) {
@@ -78,32 +80,34 @@ viamaris <- function (sampleXY, extent.buffer = NULL)
     XY360 <- as.data.frame(cbind(inds, X360[, 1], XY360[,
                                                         2]))
     colnames(XY360) <- c("ID", "X", "Y")
-    coordinates(XY360) <- c("X", "Y")
-    proj4string(XY360) <- wkt
+    # coordinates(XY360) <- c("X", "Y")
+    # proj4string(XY360) <- wkt
+    XY360 <- st_as_sf(XY360, coords = c("X", "Y"), crs = 4326)
+    #XY360 <- as(XY360, "Spatial")
+
     sp.inds <- XY360
     cat("\npreparing raster\n")
-    minX <- XY360@bbox[1, 1] - extent.buffer
-    maxX <- XY360@bbox[1, 2] + extent.buffer
-    minY <- XY360@bbox[2, 1] - extent.buffer
-    maxY <- XY360@bbox[2, 2] + extent.buffer
+    minX <- st_bbox(XY360)[1] - extent.buffer
+    maxX <- st_bbox(XY360)[3] + extent.buffer
+    minY <- st_bbox(XY360)[2] - extent.buffer
+    maxY <- st_bbox(XY360)[4] + extent.buffer
     ras.extent <- extent(as(extent(minX, maxX, minY, maxY),
                             "SpatialPolygons"))
     init.ras <- raster(nrow = resolution, ncol = resolution,
-                       ext = ras.extent, crs=wkt)
+                       ext = ras.extent, crs=4326)
     newmapfile <- st_wrap_dateline(mapfile.sf, options = c("WRAPDATELINE=YES", "DATELINEOFFSET=180"), quiet = TRUE)
     main.ras <- rasterize(newmapfile, init.ras)
 
 
-  }
-  else {
-    coordinates(sampleXY) <- c("X", "Y")
-    proj4string(sampleXY) <- wkt
-    sp.inds <- sampleXY
+  } else {
+    # coordinates(sampleXY) <- c("X", "Y")
+    # proj4string(sampleXY) <- wkt
+    sp.inds <- rawXY
     cat("\npreparing raster\n")
-    minX = sampleXY@bbox[1, 1] - extent.buffer
-    maxX = sampleXY@bbox[1, 2] + extent.buffer
-    minY = sampleXY@bbox[2, 1] - extent.buffer
-    maxY = sampleXY@bbox[2, 2] + extent.buffer
+    minX <- st_bbox(rawXY)[1] - extent.buffer
+    maxX <- st_bbox(rawXY)[3] + extent.buffer
+    minY <- st_bbox(rawXY)[2] - extent.buffer
+    maxY <- st_bbox(rawXY)[4] + extent.buffer
     ras.extent <- extent(as(extent(minX, maxX, minY, maxY),
                             "SpatialPolygons"))
     init.ras <- raster(nrow = resolution, ncol = resolution,
@@ -117,7 +121,7 @@ viamaris <- function (sampleXY, extent.buffer = NULL)
   cat("\nanalysing raster\n")
   tr <- geoCorrection(transition(main.ras, function(x) 1/mean(x),
                                  8), scl = FALSE)
-  if (any(is.na(as.data.frame(extract(main.ras, sp.inds))))) {
+  if (any(is.na(as.data.frame(extract(main.ras, as(sp.inds, "Spatial")))))) {
     cat("\nsome samples are on dry land!\n")
     cat("\ndon't worry, this may just be an artefact of the raster resolution\n")
     cat("...adjusting coordinates to nearest water\n\n")
@@ -126,7 +130,7 @@ viamaris <- function (sampleXY, extent.buffer = NULL)
       search.radius <- search.radius + 1000
       cat(paste0("optimising search radius: ", search.radius,
                  " metres\n"))
-      wetXY <- nearestWater((as.matrix(coordinates(sp.inds))),
+      wetXY <- nearestWater((as.matrix(st_coordinates(sp.inds))),
                             main.ras, search.radius)
       if (search.radius > 10000) {
         cat("\n\ncannot find water nearby, please check your coordinates\n\n")
@@ -139,13 +143,16 @@ viamaris <- function (sampleXY, extent.buffer = NULL)
       }
     }
     IND.wetXY.coord <- cbind(inds, wetXY)
-    coordinates(IND.wetXY.coord) <- c("x", "y")
-    proj4string(IND.wetXY.coord) <- wkt
+    # coordinates(IND.wetXY.coord) <- c("x", "y")
+    # proj4string(IND.wetXY.coord) <- wkt
+    IND.wetXY.coord <- st_as_sf(IND.wetXY.coord, coords = c("x", "y"), crs = 4326)
+    #IND.wetXY.coord <- as(IND.wetXY.coord, "Spatial")
+
     wet.sp.inds <- IND.wetXY.coord
-    adj.XY <- as.matrix(coordinates(wet.sp.inds))
+    adj.XY <- as.matrix(st_coordinates(wet.sp.inds))
     raster::plot(wet.sp.inds, col = "limegreen", cex = 1, pch = 16,
-         add = T)
-    cost <- as.matrix(costDistance(tr, wet.sp.inds)/1000)
+                 add = T)
+    cost <- as.matrix(costDistance(tr, as(wet.sp.inds, "Spatial"))/1000)
     if (any(adj.XY[, 1] > 180)) {
       adj.wet.XYkml <- adj.XY
       adj.wet.Xkml <- as.matrix(ifelse(adj.XY[, 1] > 180,
@@ -154,16 +161,16 @@ viamaris <- function (sampleXY, extent.buffer = NULL)
       adj.wet.XYkml <- as.data.frame(cbind(inds, adj.wet.Xkml[,
                                                               1], adj.wet.XYkml[, 2]))
       colnames(adj.wet.XYkml) <- c("ID", "X", "Y")
-      coordinates(adj.wet.XYkml) <- c("X", "Y")
+      adj.wet.XYkml <- st_as_sf(adj.wet.XYkml, coords = c("X", "Y"), crs = 4326)
+      #coordinates(adj.wet.XYkml) <- c("X", "Y")
     }
-  }
-  else {
+  }  else {
     cat("\n...calculating distance matrix\n")
     wet.sp.inds <- NULL
     adj.XY <- NULL
-    XY <- as.matrix(coordinates(sp.inds))
+    XY <- as.matrix(st_coordinates(sp.inds))
     raster::plot(sp.inds, col = "limegreen", cex = 1, pch = 16, add = T)
-    cost <- as.matrix(costDistance(tr, sp.inds)/1000)
+    cost <- as.matrix(costDistance(tr, as(sp.inds, "Spatial"))/1000)
   }
   colnames(cost) <- t(inds)
   rownames(cost) <- inds[, 1]
@@ -172,40 +179,42 @@ viamaris <- function (sampleXY, extent.buffer = NULL)
   result$call <- match.call()
   result$dist.matrix <- cost
   result$raster <- main.ras
-  result$XY.SpatialPointsDataFrame <- sp.inds
+  result$XY.sf <- sp.inds
   result$XY <- XY
-  result$adjXY.SpatialPointsDataFrame <- wet.sp.inds
+  result$adjXY.sf <- wet.sp.inds
   result$adj.XY <- adj.XY
   if (exists("adj.wet.XYkml")) {
     result$adj.XY360 <- adj.XY
-    result$adj.XY180 <- as.matrix(coordinates(adj.wet.XYkml))
-  }
-  else {
+    result$adj.XY180 <- as.matrix(st_coordinates(adj.wet.XYkml))
+  } else {
     result$adjXY <- adj.XY
   }
   res.file <- list()
   res.file$call <- match.call()
   res.file$raster <- main.ras
-  res.file$XY.SpatialPointsDataFrame <- summary(sp.inds)
+  res.file$XY.sf <- summary(sp.inds)
   res.file$XY <- XY
-  res.file$adjXY.SpatialPointsDataFrame <- summary(wet.sp.inds)
+  res.file$adjXY.sf <- summary(wet.sp.inds)
   if (exists("adj.wet.XYkml")) {
-    res.file$adjXY <- as.matrix(coordinates(adj.wet.XYkml))
-  }
-  else {
+    res.file$adjXY <- as.matrix(st_coordinates(adj.wet.XYkml))
+  }  else {
     res.file$adjXY <- adj.XY
   }
   write.csv(result$dist.matrix, paste0(as.character(nm), "_distmat.csv"))
-  kmlPoints(rawXY, kmlfile = paste0(as.character(nm), "_XY.kml"),
-            name = sp.inds$ID, icon = "http://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png")
+
+  kmlXY <- st_as_sf(sampleXY, coords = c("X", "Y"), crs = 4326)
+  sf2KML(kmlXY, colour = "red", outputPath = paste0(as.character(nm), "_XY.kml"))
+  # kmlPoints(kmlXY, kmlfile = paste0(as.character(nm), "_XY.kml"),
+  #           name = sp.inds$ID, icon = "http://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png")
   if (exists("wet.sp.inds")) {
     if (exists("adj.wet.XYkml")) {
-      kmlPoints(adj.wet.XYkml, kmlfile = paste0(as.character(nm),
-                                                "_adjustedXY.kml"), name = sp.inds$ID, icon = "http://maps.google.com/mapfiles/kml/pushpin/grn-pushpin.png")
-    }
-    else {
-      kmlPoints(wet.sp.inds, kmlfile = paste0(as.character(nm),
-                                              "_adjustedXY.kml"), name = sp.inds$ID, icon = "http://maps.google.com/mapfiles/kml/pushpin/grn-pushpin.png")
+      sf2KML(adj.wet.XYkml, colour = "green", outputPath = paste0(as.character(nm), "_adjustedXY.kml"))
+      # kmlPoints(adj.wet.XYkml, kmlfile = paste0(as.character(nm),
+      #                                           "_adjustedXY.kml"), name = sp.inds$ID, icon = "http://maps.google.com/mapfiles/kml/pushpin/grn-pushpin.png")
+    }  else {
+      sf2KML(wet.sp.inds, colour = "green", outputPath = paste0(as.character(nm), "_adjustedXY.kml"))
+      # kmlPoints(wet.sp.inds, kmlfile = paste0(as.character(nm),
+      #                                         "_adjustedXY.kml"), name = sp.inds$ID, icon = "http://maps.google.com/mapfiles/kml/pushpin/grn-pushpin.png")
     }
   }
   sink(paste0(as.character(nm), "_results.txt"))
