@@ -56,10 +56,12 @@ A quick overview of some of the key functions:
 
 * `subset_snps`: subset a structure file based on a list of loci
 
-* `xy2kml`: convert a set of XY coordinates to a .kml file for use with Google Earth
+* `xy2kml`: **deprecated function, use sf2KML instead**
 
 * `viamaris`: calculate pairwise oceanic distances from a set of XY coordinates
 
 * `extract_tri`: extract upper or lower triangle from a square matrix
+
+* `sf2KML`: convert a sf point object to a .kml file
 
 
