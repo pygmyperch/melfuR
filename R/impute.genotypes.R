@@ -26,16 +26,16 @@
 impute.data <- function(input.file, K=1, no_cores=1) {
 
 
-  #check required packages are installed and loaded
-  packages <- "LEA"
-  for(package in packages){
-    # if package is installed locally, load
-    if(package %in% rownames(installed.packages()))
-      do.call('require', list(package))
-    else {
-      stop("some required packages not loaded")
-    }
-  }
+  # #check required packages are installed and loaded
+  # packages <- "LEA"
+  # for(package in packages){
+  #   # if package is installed locally, load
+  #   if(package %in% rownames(installed.packages()))
+  #     do.call('require', list(package))
+  #   else {
+  #     stop("some required packages not loaded")
+  #   }
+  # }
 
 
   alleles <- input.file@tab

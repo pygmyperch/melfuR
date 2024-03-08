@@ -41,20 +41,20 @@
 
 HWE_filter <- function(GenInd.obj, perm, FDR_cut, pop_thresh, no_cores) {
 
-  #check required packages are installed and loaded
-  packages <- c("adegenet", "pegas", "plyr", "foreach", "doParallel")
-
-  for(package in packages){
-
-    # if package is installed locally, load
-    if(package %in% rownames(installed.packages()))
-      do.call('require', list(package))
-
-    else {
-      stop("some required packages not loaded")
-    }
-  }
-
+  # #check required packages are installed and loaded
+  # packages <- c("adegenet", "pegas", "plyr", "foreach", "doParallel")
+  # 
+  # for(package in packages){
+  # 
+  #   # if package is installed locally, load
+  #   if(package %in% rownames(installed.packages()))
+  #     do.call('require', list(package))
+  # 
+  #   else {
+  #     stop("some required packages not loaded")
+  #   }
+  # }
+  # 
   #define several variables
   loci <- locNames(GenInd.obj)
   pops <- popNames(GenInd.obj)

@@ -19,10 +19,10 @@
 #'  setwd("path/to/working/directory")
 #'
 #'  # load example coordinate file
-#'  data(Tursiops.XY)
+#'  data(Delphinus.XY)
 #'
 #'  # run analysis
-#'  dist.mat <- viamaris(Tursiops.XY, extent.buffer = 5)
+#'  dist.mat <- viamaris(Delphinus.XY, extent.buffer = 5)
 
 
 
