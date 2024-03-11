@@ -39,7 +39,8 @@
 #'
 #' @importFrom adegenet locNames popNames seppop
 #' @importFrom pegas hw.test
-#' @importFrom parallel makeCluster clusterEvalQ stopCluster
+#' @importFrom parallel makeCluster clusterEvalQ stopCluster parSapply
+#' @importFrom plyr colwise
 
 
 HWE_filter <- function(GenInd.obj, perm, FDR_cut, pop_thresh, no_cores) {
