@@ -20,7 +20,7 @@
 #'  imputed.gi <- impute.data(rainbow.genind, K = 6)
 #'  
 #' @export
-#' @importFrom LEA write.geno snmf cross.entropy impute 
+#' @importFrom LEA write.geno snmf cross.entropy impute read.lfmm
 #' @importFrom adegenet locNames indNames
 
 
