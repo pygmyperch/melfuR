@@ -1,6 +1,6 @@
 Package: melfuR
 Type: Package
-Title: A collection of scripts for exploratory analysis of ddRAD data
+Title: A collection of ugly R scripts for exploratory analysis of SNP and spatial data.
 Version: 0.9
 Author: Chris Brauer
 Maintainer: Chris Brauer <chris.brauer@flinders.edu.au>
@@ -8,9 +8,9 @@ Depends: R (>= 3.5.0)
 Imports: utils, stats, grDevices, MASS, igraph, ape, shiny, ggplot2,
     seqinr, parallel, spdep, boot, reshape2, dplyr (>= 0.4.1),
     vegan, plyr, foreach, doParallel, methods, ade4, adegenet,
-    pegas, sp, sf, raster, terra, gdistance, hierfstat
-Description: A collection of scripts for exploratory analysis of ddRAD data.
-    various tools for estimating Fst, running population structure analyses,
+    pegas, sp, sf, raster, terra, gdistance, hierfstat, plyr
+Description: A collection of ugly R scripts for exploratory analysis of SNP and spatial data.
+    various tools for estimating summary stats, exploratory population structure analyses,
     and other (hopefully) useful utilities.
 License: none
 Encoding: UTF-8
