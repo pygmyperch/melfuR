@@ -33,4 +33,3 @@ This function subsets a structure file based on a list of loci to retain
  # subset file to three loci, replacing original population codes with numbers
  subset_snps(stfile, "new_file", snplist, popnumbers = TRUE)
 }
-\keyword{structure}

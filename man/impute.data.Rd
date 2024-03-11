@@ -4,7 +4,7 @@
 \alias{impute.data}
 \title{impute missing genotypes based on pop structure characterised using snmf}
 \usage{
-impute.data(input.file, K = 1, no_cores = 1)
+impute.data(input.file, K = NULL, no_cores = 1)
 }
 \arguments{
 \item{input.file}{A genind object}
@@ -28,9 +28,8 @@ impute missing genotypes based on pop structure characterised using snmf
 
  # run analysis for K=6
  imputed.gi <- impute.data(rainbow.genind, K = 6)
+ 
 }
 \author{
 Chris Brauer
 }
-\keyword{genotype}
-\keyword{imputation}

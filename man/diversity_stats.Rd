@@ -23,5 +23,3 @@ This function calculates basic genetic diversity stats from a genind object
  res <- diversity_stats(rainbow.genind)
 
 }
-\keyword{diversity}
-\keyword{genetic}

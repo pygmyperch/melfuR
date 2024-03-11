@@ -2,7 +2,6 @@
 #'
 #' @param input.file A genind object
 #' @keywords missing data
-#' @export
 #' @examples
 #'  ## set directory for results to be written
 #'  setwd("path/to/working/directory")
@@ -13,6 +12,8 @@
 #'  # calculate the percent polymorphic loci per population
 #'  res <- missing_data(rainbow.genind)
 #'
+#' @export
+#' @importFrom adegenet seppop 
 
 
 

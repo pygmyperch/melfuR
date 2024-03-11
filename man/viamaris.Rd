@@ -37,6 +37,3 @@ calculate pairwise oceanic distances among sampling locations
 \author{
 Chris Brauer
 }
-\keyword{distance}
-\keyword{pairwise}
-\keyword{viamaris}

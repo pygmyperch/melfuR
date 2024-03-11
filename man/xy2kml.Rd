@@ -20,10 +20,12 @@ generate a kml file from dataframe of coordinates
  setwd("path/to/working/directory")
 
  # load example coordinate file
- data(Tursiops.XY)
+ data(Delphinus_XY)
 
  # run analysis
- xy2kml(Tursiops.XY)
+ xy2kml(Delphinus_XY)
+
+#' @export
 }
 \author{
 Chris Brauer

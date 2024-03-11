@@ -32,9 +32,8 @@
 #' sf2KML(Flinders_sf, colour = "red", outputPath = "Flinders_University.kml")
 #'
 #' @export
-#' @importFrom xml2 read_xml write_xml
+#' @importFrom xml2 read_xml write_xml xml_add_child
 #' @importFrom sf st_coordinates
-
 
 
 

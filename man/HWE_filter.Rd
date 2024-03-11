@@ -50,5 +50,5 @@ A wrapper function for the hw.test function from pegas to filter a genind object
 
  # run subset_snps using output of HWE_filter
    subset_snps(stfile, "new_structure_file", run1)
+
 }
-\keyword{HWE}

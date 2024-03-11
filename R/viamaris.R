@@ -12,8 +12,6 @@
 #'
 #'
 #' @author Chris Brauer
-#' @keywords pairwise distance viamaris
-#' @export
 #' @examples
 #'  ## set directory for results to be written
 #'  setwd("path/to/working/directory")
@@ -23,8 +21,11 @@
 #'
 #'  # run analysis
 #'  dist.mat <- viamaris(Delphinus.XY, extent.buffer = 5)
-
-
+#' @export
+#' @importFrom raster plot extent raster
+#' @importFrom terra extract xyFromCell rasterize
+#' @importFrom sf st_as_sf st_wrap_dateline st_coordinates st_transform st_bbox
+#' @importFrom gdistance geoCorrection transition costDistance
 
 viamaris <- function (sampleXY, extent.buffer = NULL)
 {
@@ -116,8 +117,8 @@ viamaris <- function (sampleXY, extent.buffer = NULL)
   }
   main.ras <- is.na(main.ras)
   main.ras[main.ras == 0] <- NA
-  raster::plot(main.ras, breaks = c(0, 1), col = "blue", legend = FALSE)
-  raster::plot(sp.inds, col = "red", cex = 1, add = T)
+  plot(main.ras, breaks = c(0, 1), col = "blue", legend = FALSE)
+  plot(sp.inds, col = "red", cex = 1, add = T)
   cat("\nanalysing raster\n")
   tr <- geoCorrection(transition(main.ras, function(x) 1/mean(x),
                                  8), scl = FALSE)
@@ -150,7 +151,7 @@ viamaris <- function (sampleXY, extent.buffer = NULL)
 
     wet.sp.inds <- IND.wetXY.coord
     adj.XY <- as.matrix(st_coordinates(wet.sp.inds))
-    raster::plot(wet.sp.inds, col = "limegreen", cex = 1, pch = 16,
+    plot(wet.sp.inds, col = "limegreen", cex = 1, pch = 16,
                  add = T)
     cost <- as.matrix(costDistance(tr, as(wet.sp.inds, "Spatial"))/1000)
     if (any(adj.XY[, 1] > 180)) {
@@ -169,7 +170,7 @@ viamaris <- function (sampleXY, extent.buffer = NULL)
     wet.sp.inds <- NULL
     adj.XY <- NULL
     XY <- as.matrix(st_coordinates(sp.inds))
-    raster::plot(sp.inds, col = "limegreen", cex = 1, pch = 16, add = T)
+    plot(sp.inds, col = "limegreen", cex = 1, pch = 16, add = T)
     cost <- as.matrix(costDistance(tr, as(sp.inds, "Spatial"))/1000)
   }
   colnames(cost) <- t(inds)
