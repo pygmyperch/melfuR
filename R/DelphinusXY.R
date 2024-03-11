@@ -12,4 +12,5 @@
 #' data(DelphinusXY)
 #' head(yourData)
 #'
+#' @name DelphinusXY
 NULL
