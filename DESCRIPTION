@@ -1,7 +1,7 @@
 Package: melfuR
 Type: Package
 Title: A collection of ugly R scripts for exploratory analysis of SNP and spatial data.
-Version: 0.9
+Version: 1.1
 Author: Chris Brauer
 Maintainer: Chris Brauer <chris.brauer@flinders.edu.au>
 Depends: R (>= 3.5.0)
