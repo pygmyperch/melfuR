@@ -25,7 +25,6 @@ generate a kml file from dataframe of coordinates
  # run analysis
  xy2kml(Delphinus_XY)
 
-#' @export
 }
 \author{
 Chris Brauer
