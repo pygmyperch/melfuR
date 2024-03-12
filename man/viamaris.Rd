@@ -29,10 +29,10 @@ calculate pairwise oceanic distances among sampling locations
  setwd("path/to/working/directory")
 
  # load example coordinate file
- data(Delphinus.XY)
+ data(DelphinusXY)
 
  # run analysis
- dist.mat <- viamaris(Delphinus.XY, extent.buffer = 5)
+ dist.mat <- viamaris(DelphinusXY, extent.buffer = 5)
 }
 \author{
 Chris Brauer

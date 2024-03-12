@@ -20,10 +20,10 @@ generate a kml file from dataframe of coordinates
  setwd("path/to/working/directory")
 
  # load example coordinate file
- data(Delphinus_XY)
+ data(DelphinusXY)
 
  # run analysis
- xy2kml(Delphinus_XY)
+ xy2kml(DelphinusXY)
 
 }
 \author{
