@@ -2,7 +2,6 @@
 #'
 #' @param input.file A genind object
 #' @keywords genetic diversity polymorphic loci
-#' @export
 #' @examples
 #'  ## set directory for results to be written
 #'  setwd("path/to/working/directory")
@@ -13,6 +12,8 @@
 #'  # calculate the percent polymorphic loci per population
 #'  res <- percent_poly(rainbow.genind)
 #'
+#' @export
+#' @importFrom adegenet seppop nAll
 
 
 

@@ -1,8 +1,6 @@
 #' This function calculates basic genetic diversity stats from a genind object
 #'
 #' @param input.file A genind object
-#' @keywords genetic diversity
-#' @export
 #' @examples
 #'  ## set directory for results to be written
 #'  setwd("path/to/working/directory")
@@ -13,7 +11,9 @@
 #'  # calculate Na, %poly, Ho, He, and Fis (with 95%CIs) per population
 #'  res <- diversity_stats(rainbow.genind)
 #'
-
+#' @export
+#' @importFrom hierfstat genind2hierfstat allelic.richness basic.stats boot.ppfis
+#' @importFrom adegenet seppop isPoly nAll
 
 
 diversity_stats <- function(genind) {

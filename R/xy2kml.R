@@ -3,35 +3,30 @@
 #' @param sampleXY -  a data frame with three columns: ID, X and Y (in decimal degrees)
 #' @return a .kml file of that you can view in google earth
 #' @author Chris Brauer
-#' @export
 #' @examples
 #'  ## set directory for results to be written
 #'  setwd("path/to/working/directory")
 #'
 #'  # load example coordinate file
-#'  data(Tursiops.XY)
+#'  data(DelphinusXY)
 #'
 #'  # run analysis
-#'  xy2kml(Tursiops.XY)
+#'  xy2kml(DelphinusXY)
+#'
+#' @export
+#' @importFrom sf st_coordinates
 
 
 
 xy2kml <- function (sampleXY) {
 
-  # get input object name to use as name of output file
   nm <- deparse(substitute(sampleXY))
+  xy <- as.data.frame(sampleXY)
+  xy <- st_as_sf(xy, coords = c("X", "Y"), crs = 4326)
+  
 
-  cs <- "+init=epsg:4326"
-
-  # define SpatialPointsDataFrame for raw sampleXYs
-  spXY <- as.data.frame(sampleXY)
-  coordinates(spXY)<- c("X", "Y")
-  proj4string(spXY)<- cs
-  spXY <- spTransform(spXY, CRS= cs)
-
-
-  kmlPoints(spXY, kmlfile = paste0(as.character(nm),"_XY.kml"), name = spXY$ID,
-            icon = "http://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png")
+  sf2KML(xy, colour = "red", outputPath = paste0(as.character(nm), "_XY.kml"))
+  
 
 
 }

@@ -14,7 +14,6 @@
 #' @return HWE_SNPs.csv          a table of SNPs in HWE at the specified FDR in >pop_thresh populations
 #' @return HWE_list              a vector of SNPs in HWE suitable for input to the subset_snps function
 #'
-#' @keywords HWE
 #' @export
 #' @examples
 #'  ## set directory for results to be written
@@ -37,6 +36,11 @@
 #'
 #'  # run subset_snps using output of HWE_filter
 #'    subset_snps(stfile, "new_structure_file", run1)
+#'
+#' @importFrom adegenet locNames popNames seppop
+#' @importFrom pegas hw.test
+#' @importFrom parallel makeCluster clusterEvalQ stopCluster parSapply
+#' @importFrom plyr colwise
 
 
 HWE_filter <- function(GenInd.obj, perm, FDR_cut, pop_thresh, no_cores) {

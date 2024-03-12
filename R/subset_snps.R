@@ -4,8 +4,6 @@
 #' @param result.file A character string name of your result file
 #' @param loci.to.keep A vector of character strings naming the loci to retain (based on the locus names in the original file)
 #' @param popnumbers an optional logical stating whether to convert the population column from character strings to numbers (default = FALSE)
-#' @keywords structure
-#' @export
 #' @examples
 #'  ## set directory for results to be written
 #'  setwd("path/to/working/directory")
@@ -20,6 +18,7 @@
 #'
 #'  # subset file to three loci, replacing original population codes with numbers
 #'  subset_snps(stfile, "new_file", snplist, popnumbers = TRUE)
+#' @export
 
 
 
