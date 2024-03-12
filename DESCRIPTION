@@ -1,15 +1,15 @@
 Package: melfuR
 Type: Package
-Title: A collection of ugly R scripts for exploratory analysis of SNP and spatial data.
+Title: A collection of ugly R functions for analysis of SNP and spatial data.
 Version: 1.1
 Author: Chris Brauer
 Maintainer: Chris Brauer <chris.brauer@flinders.edu.au>
 Depends: R (>= 3.5.0)
 Imports: utils, stats, grDevices, MASS, igraph, ggplot2,
-    seqinr, parallel, spdep, boot, reshape2, dplyr (>= 0.4.1),
+    seqinr, parallel, spdep, boot, reshape2, dplyr,
     vegan, plyr, foreach, doParallel, methods, adegenet,
     pegas, sp, sf, raster, terra, gdistance, hierfstat, plyr
-Description: A collection of ugly R scripts for exploratory analysis of SNP and spatial data.
+Description: A collection of ugly R functions for exploratory analysis of SNP and spatial data.
     various tools for estimating summary stats, exploratory population structure analyses,
     and other (hopefully) useful utilities.
 License: none
