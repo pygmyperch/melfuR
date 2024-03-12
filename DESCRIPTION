@@ -7,7 +7,7 @@ Maintainer: Chris Brauer <chris.brauer@flinders.edu.au>
 Depends: R (>= 3.5.0)
 Imports: utils, stats, grDevices, MASS, igraph, ape, shiny, ggplot2,
     seqinr, parallel, spdep, boot, reshape2, dplyr (>= 0.4.1),
-    vegan, plyr, foreach, doParallel, methods, ade4, adegenet,
+    vegan, plyr, foreach, doParallel, methods, adegenet,
     pegas, sp, sf, raster, terra, gdistance, hierfstat, plyr
 Description: A collection of ugly R scripts for exploratory analysis of SNP and spatial data.
     various tools for estimating summary stats, exploratory population structure analyses,
