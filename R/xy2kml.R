@@ -25,7 +25,7 @@ xy2kml <- function (sampleXY) {
   xy <- st_as_sf(xy, coords = c("X", "Y"), crs = 4326)
   
 
-  sf2KML(spXY, colour = "red", outputPath = paste0(as.character(nm), "_XY.kml"))
+  sf2KML(xy, colour = "red", outputPath = paste0(as.character(nm), "_XY.kml"))
   
 
 
