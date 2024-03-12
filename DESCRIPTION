@@ -5,7 +5,7 @@ Version: 1.1
 Author: Chris Brauer
 Maintainer: Chris Brauer <chris.brauer@flinders.edu.au>
 Depends: R (>= 3.5.0)
-Imports: utils, stats, grDevices, MASS, igraph, ape, shiny, ggplot2,
+Imports: utils, stats, grDevices, MASS, igraph, ggplot2,
     seqinr, parallel, spdep, boot, reshape2, dplyr (>= 0.4.1),
     vegan, plyr, foreach, doParallel, methods, adegenet,
     pegas, sp, sf, raster, terra, gdistance, hierfstat, plyr
