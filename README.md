@@ -12,7 +12,7 @@ ___
 <br/>
 
 
-A collection of R scripts for exploratory analysis of ddRAD data, spatial analyses and other (hopefully) useful utilities.
+A collection of ugly R scripts for exploratory analysis of ddRAD data, spatial analyses and other (hopefully) useful utilities.
 
 These are mostly just wrapper scripts to simplify running basic pop-gen analyses using a single format (adegenet: genind)
 \
