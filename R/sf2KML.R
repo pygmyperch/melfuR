@@ -34,50 +34,49 @@
 #' @export
 #' @importFrom xml2 read_xml write_xml xml_add_child
 #' @importFrom sf st_coordinates st_as_sf
+#' @importFrom geosphere distm
 
 
 
 sf2KML <- function(sf_object, colour = NULL, outputPath = NULL) {
-  
   sf_object_name <- deparse(substitute(sf_object))
   if (is.null(outputPath)) {
     outputPath <- paste0(sf_object_name, ".kml")
   } else {
-    # Ensure outputPath incorporates working directory if only a filename is provided
     if (!grepl("/", outputPath)) {
       outputPath <- paste0(getwd(), "/", outputPath)
     }
   }
-  # Base URL pattern for the icons
-  baseUrl <- "http://maps.google.com/mapfiles/kml/pushpin/"
   
-  # List of valid colours
+  baseUrl <- "http://maps.google.com/mapfiles/kml/pushpin/"
   validColours <- list(
-    green = "grn",
-    blue = "blue",
-    red = "red",
-    purple = "purple",
-    lightblue = "ltblu",
-    pink = "pink",
-    white = "wht"
+    green = "grn", blue = "blue", red = "red", purple = "purple",
+    lightblue = "ltblu", pink = "pink", white = "wht"
   )
   
-  # Determine the icon URL based on the specified colour
-  if (!is.null(colour) && colour %in% names(validColours)) {
-    colourAbbreviation <- validColours[[colour]]
-    iconUrl <- paste0(baseUrl, colourAbbreviation, "-pushpin.png")
-  } else {
-    # Default icon URL if no valid colour is specified
-    iconUrl <- paste0(baseUrl, "ylw-pushpin.png") # Using yellow (ylw) as the default colour
-  }
+  iconUrl <- paste0(baseUrl, ifelse(colour %in% names(validColours), validColours[[colour]], "ylw"), "-pushpin.png")
   
-  # Initialize the root KML structure with the namespace
   kml <- read_xml('<kml xmlns="http://www.opengis.net/kml/2.2"></kml>')
+  doc <- xml_add_child(kml, "Document")
   
-  # Directly add and work with the Document node
-  doc <- xml_add_child(kml, 'Document')
+  # Calculate the centroid and the optimal viewing range
+  coords <- st_coordinates(st_centroid(st_union(sf_object)))
+  centroid_x <- coords[1, "X"]
+  centroid_y <- coords[1, "Y"]
   
-  # Add a custom icon style if an icon URL is provided
+  # set zoom level for opening kml using geodesic distance for the furthest point pair
+  max_distance <- max(distm(st_coordinates(sf_object)))
+  #view_range <- max_distance #/ 2  # adjust to half of max distance
+  
+  lookAt <- xml_add_child(doc, "LookAt")
+  xml_add_child(lookAt, "longitude", as.character(centroid_x))
+  xml_add_child(lookAt, "latitude", as.character(centroid_y))
+  xml_add_child(lookAt, "altitude", "0")
+  xml_add_child(lookAt, "range", as.character(max_distance))
+  xml_add_child(lookAt, "tilt", "0")
+  xml_add_child(lookAt, "heading", "0")
+  
+  # Custom icon style
   if (!is.null(iconUrl)) {
     styleNode <- xml_add_child(doc, 'Style', id = 'customIconStyle')
     iconStyleNode <- xml_add_child(styleNode, 'IconStyle')
@@ -85,15 +84,14 @@ sf2KML <- function(sf_object, colour = NULL, outputPath = NULL) {
     xml_add_child(iconNode, 'href', iconUrl)
   }
   
-  # Iterate over the sf object to add Placemark elements
+  # Add placemarks for each point
   n <- nrow(sf_object)
   for (i in seq_len(n)) {
     coords <- st_coordinates(sf_object[i, ])
-    ID <- as.character(sf_object$ID[i]) # Convert factor to character if needed
+    ID <- as.character(sf_object$ID[i])
     
     placemark <- xml_add_child(doc, 'Placemark')
     xml_add_child(placemark, 'name', ID)
-    
     if (!is.null(iconUrl)) {
       xml_add_child(placemark, 'styleUrl', '#customIconStyle')
     }
@@ -102,8 +100,7 @@ sf2KML <- function(sf_object, colour = NULL, outputPath = NULL) {
     xml_add_child(point, 'coordinates', sprintf('%f,%f,0', coords[1, 'X'], coords[1, 'Y']))
   }
   
-  # Write the KML to the specified output file
+  # Save the KML file
   write_xml(kml, outputPath)
 }
-
 

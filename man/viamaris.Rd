@@ -19,7 +19,7 @@ distmat.csv           a pairwise matrix of distances (Km) between sampling sites
 
 XY.kml                a .kml file of the original coordinates that you can view in google earth
 
-XY.kml                a .kml file of the adjusted coordinates that you can view in google earth
+adjustedXY.kml        a .kml file of the adjusted coordinates that you can view in google earth (if necessary)
 }
 \description{
 calculate pairwise oceanic distances among sampling locations
