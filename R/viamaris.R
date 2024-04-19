@@ -22,7 +22,7 @@
 #'  # run analysis
 #'  dist.mat <- viamaris(DelphinusXY, extent.buffer = 5)
 #' @export
-#' @importFrom raster plot extent raster
+#' @importFrom raster plot extent raster cellFromXY
 #' @importFrom terra extract xyFromCell rasterize
 #' @importFrom sf st_as_sf st_wrap_dateline st_coordinates st_transform st_bbox
 #' @importFrom gdistance geoCorrection transition costDistance
