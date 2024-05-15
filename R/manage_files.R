@@ -6,7 +6,7 @@
 #' can operate on them based on the given action parameter.
 #' @param action A string specifying the operation to perform on the files:
 #'               'list' to display file names, 'copy' to copy files, or 'move'
-#'               to move files. Default is 'move'.
+#'               to move files. Default is 'list'.
 #' @param prefix A string indicating the prefix of the file names to match.
 #'               Default is an empty string, which means no prefix filtering.
 #' @param suffix A string indicating the suffix of the file names to match.
@@ -18,7 +18,7 @@
 #'                         Default is NULL.
 #'
 #' @return Invisible TRUE if the operation was successful, FALSE otherwise.
-#'         If 'list' action is chosen, it prints the list of matched files.
+#'         If 'list' action is selected, it prints the list of matched files.
 #'
 #' @examples
 #' # List all files containing "report" in their names
