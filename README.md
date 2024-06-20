@@ -64,6 +64,6 @@ A quick overview of some of the key functions:
 
 * `sf2KML`: convert a sf point object to a .kml file
 
-* `clean_vcf_INFO`: Parse and clean-up INFO Fields in a VCF File to remove any fields not consistently present across all records
+* `clean_vcf_INFO`: clean-up INFO fields in a VCF file to remove any fields not present across all records
 
 
