@@ -62,6 +62,11 @@ clean_vcf_INFO <- function(vcffile) {
   # Replace the original INFO column with the cleaned one
   vcf@fix[, 8] <- info_tmp_2_cleaned
   
+  # Remove the descriptions of the removed keys from the header
+  header <- vcf@meta
+  cleaned_header <- header[!grepl(paste0("##INFO=<ID=(", paste(missing_keys, collapse = "|"), ")"), header)]
+  vcf@meta <- cleaned_header
+  
   # Write the cleaned VCF to the output file
   vcfR::write.vcf(vcf, file = outputfile)
   
