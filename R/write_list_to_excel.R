@@ -11,17 +11,20 @@
 #'
 #' @examples
 #' \dontrun{
-#' library(openxlsx)
+#' Example workflow:
+#' 
+#' # Create an empty list to store results from some analyses
+#' results <- list()
 #'
-#' # Create example data
-#' data1 <- data.frame(A = 1:5, B = letters[1:5])
-#' data2 <- data.frame(X = rnorm(5), Y = runif(5))
+#' # results from each analysis step are added to the list
+#' analysis1_result <- data.frame(A = 1:5, B = letters[1:5])
+#' results$analysis1_result <- as.data.frame(analysis1_result)
 #'
-#' # Create a list of data frames
-#' data_list <- list(Sheet1 = data1, Sheet2 = data2)
+#' analysis2_result <- data.frame(X = rnorm(5), Y = runif(5))
+#' results$analysis2_result <- as.data.frame(analysis2_result)
 #'
-#' # Write the list to an Excel file
-#' write_list_to_excel(data_list, "example.xlsx")
+#' # Write the list to an Excel file with each element on a seperate sheet
+#' write_list_to_excel(results, "example.xlsx")
 #' }
 #' @export
 write_list_to_excel <- function(data_list, file_name) {
