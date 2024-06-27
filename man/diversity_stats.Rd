@@ -2,15 +2,15 @@
 % Please edit documentation in R/diversity_stats.R
 \name{diversity_stats}
 \alias{diversity_stats}
-\title{This function calculates basic genetic diversity stats from a genind object}
+\title{This function calculates basic genetic diversity stats from a genind or genlight object}
 \usage{
-diversity_stats(genind)
+diversity_stats(input.file)
 }
 \arguments{
-\item{input.file}{A genind object}
+\item{input.file}{A genind or genlight object}
 }
 \description{
-This function calculates basic genetic diversity stats from a genind object
+This function calculates basic genetic diversity stats from a genind or genlight object
 }
 \examples{
  ## set directory for results to be written
