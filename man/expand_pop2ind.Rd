@@ -25,6 +25,7 @@ The resulting individual-level data frame is saved as a CSV file named "individu
 \dontrun{
 
 # Example genlight object
+library(adegenet)
 data(nancycats)
 genlight_obj <- gi2gl(nancycats[pop(nancycats) \%in\% levels(pop(nancycats))[1:3]])
 
