@@ -17,6 +17,8 @@
 #' @importFrom vcfR read.vcfR extract.gt extract.info write.vcf
 #' @importFrom stringr str_replace_all
 #' @importFrom R.utils gunzip
+#' 
+#' @export
 
 polarise_ancestral_vcf <- function(input_vcf, output_vcf = "output.vcf.gz", compress = NULL) {
 
