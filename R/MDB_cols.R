@@ -37,5 +37,3 @@ MDB_cols <- c(
   "SummerSky" = rgb(76/255, 149/255, 255/255)
 )
 
-# Save the data to the package (run once during package development)
-# usethis::use_data(MDB_cols, overwrite = TRUE)

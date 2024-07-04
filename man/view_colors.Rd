@@ -6,6 +6,12 @@
 \usage{
 view_colors(colors)
 }
+\arguments{
+\item{colors}{A named vector of colors.}
+}
 \description{
 This function plots the MDB color palette.
+}
+\examples{
+view_colors(MDB_cols)
 }
