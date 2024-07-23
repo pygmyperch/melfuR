@@ -4,18 +4,22 @@
 \alias{write_list_to_excel}
 \title{Write a List of Data Frames to an Excel File}
 \usage{
-write_list_to_excel(data_list, file_name)
+write_list_to_excel(data_list, file_name, placeholder = "NA_PLACEHOLDER")
 }
 \arguments{
 \item{data_list}{A named list of data frames to be written to the Excel file. Each list element will be written to a separate sheet.}
 
 \item{file_name}{A character string specifying the name of the output Excel file.}
+
+\item{placeholder}{A character string used as a placeholder to replace NA values in the data frames. Default is "NA_PLACEHOLDER".}
 }
 \value{
 This function does not return a value. It writes the list of data frames to an Excel file.
 }
 \description{
 This function writes a list of data frames to an Excel file, with each element of the list being written to a separate sheet.
+It preprocesses the data frames to replace NA values with a placeholder string, writes the data to the workbook,
+and then clears the cells containing the placeholder string to ensure they are treated as truly empty cells in Excel.
 }
 \examples{
 \dontrun{
@@ -31,7 +35,7 @@ results$analysis1_result <- as.data.frame(analysis1_result)
 analysis2_result <- data.frame(X = rnorm(5), Y = runif(5))
 results$analysis2_result <- as.data.frame(analysis2_result)
 
-# Write the list to an Excel file with each element on a seperate sheet
+# Write the list to an Excel file with each element on a separate sheet
 write_list_to_excel(results, "example.xlsx")
 }
 }
