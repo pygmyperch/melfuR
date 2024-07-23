@@ -27,25 +27,25 @@
 #' write_list_to_excel(results, "example.xlsx")
 #' }
 #' @export
-write_list_to_excel <- function(data_list, file_name, na.string = "NA") {
-  # Create a new workbook
+write_list_to_excel <- function(data_list, file_name) {
   wb <- createWorkbook()
-  
-  # Iterate over each element in the list
   for (sheet_name in names(data_list)) {
-    # Add a new sheet to the workbook
     addWorksheet(wb, sheet_name)
-    
-    # Ensure the data is a data frame before writing to Excel
     data_to_write <- data_list[[sheet_name]]
     if (!is.data.frame(data_to_write)) {
       data_to_write <- as.data.frame(data_to_write)
     }
     
-    # Write the data to the sheet
-    writeData(wb, sheet_name, data_to_write, rowNames = TRUE, na.string = na.string)
+    # Convert NA values to NULL
+    data_to_write <- as.data.frame(lapply(data_to_write, function(x) {
+      if (is.factor(x)) {
+        levels(x)[is.na(levels(x))] <- NULL
+      }
+      x[is.na(x)] <- NULL
+      return(x)
+    }))
+    
+    writeData(wb, sheet_name, data_to_write, rowNames = TRUE)
   }
-  
-  # Save the workbook to file
   saveWorkbook(wb, file_name, overwrite = TRUE)
 }

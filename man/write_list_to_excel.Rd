@@ -4,7 +4,7 @@
 \alias{write_list_to_excel}
 \title{Write a List of Data Frames to an Excel File}
 \usage{
-write_list_to_excel(data_list, file_name, na.string = "NA")
+write_list_to_excel(data_list, file_name)
 }
 \arguments{
 \item{data_list}{A named list of data frames to be written to the Excel file. Each list element will be written to a separate sheet.}
