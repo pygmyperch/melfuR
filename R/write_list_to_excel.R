@@ -28,6 +28,15 @@
 #' }
 #' @export
 write_list_to_excel <- function(data_list, file_name) {
+  
+  # Function to replace NA with NULL in a data frame
+  replace_na_with_null <- function(df) {
+    for (i in seq_along(df)) {
+      df[[i]][is.na(df[[i]])] <- ""
+    }
+    return(df)
+  }
+  
   wb <- createWorkbook()
   for (sheet_name in names(data_list)) {
     addWorksheet(wb, sheet_name)
@@ -36,14 +45,8 @@ write_list_to_excel <- function(data_list, file_name) {
       data_to_write <- as.data.frame(data_to_write)
     }
     
-    # Convert NA values to NULL
-    data_to_write <- as.data.frame(lapply(data_to_write, function(x) {
-      if (is.factor(x)) {
-        levels(x)[is.na(levels(x))] <- NULL
-      }
-      x[is.na(x)] <- NULL
-      return(x)
-    }))
+    # Replace NA values with NULL
+    data_to_write <- replace_na_with_null(data_to_write)
     
     writeData(wb, sheet_name, data_to_write, rowNames = TRUE)
   }
