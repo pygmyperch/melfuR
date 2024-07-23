@@ -43,7 +43,7 @@ write_list_to_excel <- function(data_list, file_name) {
     }
     
     # Write the data to the sheet
-    writeData(wb, sheet_name, data_to_write, rowNames = TRUE)
+    writeData(wb, sheet_name, data_to_write, rowNames = TRUE, na.string = na.string)
   }
   
   # Save the workbook to file
