@@ -27,7 +27,7 @@
 #' write_list_to_excel(results, "example.xlsx")
 #' }
 #' @export
-write_list_to_excel <- function(data_list, file_name) {
+write_list_to_excel <- function(data_list, file_name, na.string = "NA") {
   # Create a new workbook
   wb <- createWorkbook()
   
