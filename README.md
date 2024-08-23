@@ -36,17 +36,25 @@ Then install melfuR
 devtools::install_github("pygmyperch/melfuR")
 ```
 
-A quick overview of some of the key functions:
+A quick overview of the functions:
 
-* `rainbow.genind`: An example genind object consisting of 500 loci and 249 individuals from 14 populations of *Melanotaenia fluviatilis* in the Murray-Darling Basin. 
+* `rainbow.genind`: an example genind object consisting of 500 loci and 249 individuals from 14 populations of *Melanotaenia fluviatilis* in the Murray-Darling Basin. 
 
-* `rainbow.env`: Environmental data for 14 populations of *Melanotaenia fluviatilis* in the Murray-Darling Basin. 
+* `rainbow.env`: environmental data for 14 populations of *Melanotaenia fluviatilis* in the Murray-Darling Basin. 
 
-* `run.gINLAnd`: A wrapper function to run gINLAnd GEA analysis on a genind object
+* `DelphinusXY`: XY coordinates of common dolphin *Delphinus delphis* sampling locations in Australia and New Zealand. 
+
+* `MDB_cols`: custom color palette based on the Murray-Darling Basin landscape.
+
+* `view_colors`: view the MDB color palette.
+
+* `expand_pop2ind`: expands population-level metadata to an individual-level data frame.
 
 * `HWE_filter`: filter loci for HWE by population using a genind object
 
-* `impute.data`: impute missing genotypes in a genind object
+* `impute_genotypes`: impute missing genotypes in a genind or genlight object using population allele frequencies estimated with Sparse Non-Negative Matrix Factorization (LEA::snmf).
+
+* `sort_alleles`: sort alleles in a genind or genlight object based major/minor status, optionally sort relative to a specified reference population.
 
 * `percent_poly`: calculate the % polymorphic loci per population from a genind object
 
@@ -56,14 +64,18 @@ A quick overview of some of the key functions:
 
 * `subset_snps`: subset a structure file based on a list of loci
 
-* `xy2kml`: **deprecated function, use sf2KML instead**
+* `viamaris`: calculate pairwise oceanic distances from a set of XY coordinates.
 
-* `viamaris`: calculate pairwise oceanic distances from a set of XY coordinates
+* `extract_tri`: extract upper or lower triangle from a square matrix.
 
-* `extract_tri`: extract upper or lower triangle from a square matrix
+* `sf2KML`: convert sf points, lines, and polygon objects to .kml files.
 
-* `sf2KML`: convert a sf point object to a .kml file
+* `clean_vcf_INFO`: clean-up INFO fields in a VCF file to remove any fields not present across all records.
 
-* `clean_vcf_INFO`: clean-up INFO fields in a VCF file to remove any fields not present across all records
+* `polarise_ancestral_vcf`: polarise a VCF file setting the (supplied) ancestral allele as REF.
+
+* `manage_files`: perform file operations such as listing, copying, and moving files.
+
+* `write_list_to_excel`: write a list of data frames to an Excel file (.xlsx).
 
 
