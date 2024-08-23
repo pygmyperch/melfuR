@@ -38,4 +38,4 @@ Description: A collection of ugly R functions for exploratory analysis of SNP an
 License: GPL-3
 Encoding: UTF-8
 LazyData: false
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
