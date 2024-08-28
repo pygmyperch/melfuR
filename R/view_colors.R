@@ -3,7 +3,7 @@
 #' This function plots the MDB color palette.
 #'
 #' @param colors A named vector of colors.
-#' @importFrom ggplot2 ggplot geom_tile geom_text scale_fill_identity scale_x_continuous theme_void theme element_blank margin labs
+#' @importFrom ggplot2 ggplot geom_tile geom_text scale_fill_identity scale_x_continuous theme_void theme element_blank margin labs aes
 #' @export
 #' @examples
 #' view_colors(MDB_cols)
