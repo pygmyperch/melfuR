@@ -16,7 +16,7 @@
 #' @param fill_colour Color for polygon fills. Can be a named color or a hex color code.
 #'        Default is "#00ff00" (green).
 #' @param fill_opacity Numeric value between 0 and 1 specifying the opacity of polygon fills.
-#'        Default is 0.5 (50% opacity).
+#'        Default is 0.5 (50\% opacity).
 #'
 #' @return Invisible NULL. Writes a KML file to the specified or default path.
 #'
