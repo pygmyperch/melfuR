@@ -2,24 +2,44 @@
 % Please edit documentation in R/diversity_stats.R
 \name{diversity_stats}
 \alias{diversity_stats}
-\title{This function calculates basic genetic diversity stats from a genind or genlight object}
+\title{Calculate basic genetic diversity statistics from genind or genlight objects}
 \usage{
 diversity_stats(input.file)
 }
 \arguments{
-\item{input.file}{A genind or genlight object}
+\item{input.file}{A genind object, a genlight object, or a list of such objects}
+}
+\value{
+For a single input object, returns a data frame of diversity statistics.
+        For a list of input objects, returns a list of data frames, one for each input object.
+        In both cases, the function also writes the results to CSV files.
 }
 \description{
-This function calculates basic genetic diversity stats from a genind or genlight object
+This function calculates basic genetic diversity statistics from a genind or genlight object,
+or from a list of such objects.
+}
+\details{
+The function calculates the following statistics for each population:
+         N (sample size), Na (allelic richness), %poly (percentage of polymorphic loci),
+         Ho (observed heterozygosity), He (expected heterozygosity),
+         Fis (inbreeding coefficient), and 95% confidence intervals for Fis (LCI and UCI).
+
+         When processing a list of objects, the function uses the names of the list elements
+         (or generates names if they're missing) to name the output files and list elements.
+         Any "." in the input object names are replaced with underscores in the output file names.
 }
 \examples{
- ## set directory for results to be written
- setwd("path/to/working/directory")
+## Set directory for results to be written
+setwd("path/to/working/directory")
 
- ## load the example data
- data(rainbow.genind)
+## Load the example data
+data(rainbow.genind)
 
- # calculate Na, \%poly, Ho, He, and Fis (with 95\%CIs) per population
- res <- diversity_stats(rainbow.genind)
+# Calculate diversity stats for a single genind object
+res_single <- diversity_stats(rainbow.genind)
+
+# Calculate diversity stats for a list of genind objects
+genind_list <- list(pop1 = rainbow.genind, pop2 = rainbow.genind)
+res_list <- diversity_stats(genind_list)
 
 }

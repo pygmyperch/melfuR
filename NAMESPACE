@@ -3,7 +3,7 @@
 export(HWE_filter)
 export(MDB_cols)
 export(clean_vcf_INFO)
-export(diversity_stats_dev)
+export(diversity_stats)
 export(expand_pop2ind)
 export(extract_tri)
 export(impute_genotypes)
