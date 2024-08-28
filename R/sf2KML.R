@@ -1,5 +1,6 @@
 #' Convert Simple Features to KML
 #'
+#' @description
 #' This function converts Simple Features (sf) objects to Keyhole Markup Language (KML) format,
 #' allowing for easy visualization in Google Earth. It supports common
 #' geometry types including points, lines, and polygons.
@@ -25,7 +26,6 @@
 #' - LINESTRING and MULTILINESTRING: Rendered as lines with color specified by 'line_colour'.
 #' - POLYGON and MULTIPOLYGON: Rendered as filled polygons with outline color specified by
 #'   'line_colour' and fill color specified by 'fill_colour' and 'fill_opacity'.
-#'
 #'
 #' @examples
 #' \dontrun{
