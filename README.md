@@ -14,7 +14,7 @@ ___
 
 A collection of ugly R scripts for exploratory analysis of ddRAD data, spatial analyses and other (hopefully) useful utilities.
 
-These are mostly just wrapper scripts to simplify running basic pop-gen analyses using a single format (adegenet: genind)
+These are mostly just wrapper scripts to simplify running basic pop-gen analyses using a single format (adegenet: genind/genlight)
 \
 The code is characteristically ugly :dizzy_face: but feel free to use/modify whatever you find useful
 
@@ -22,18 +22,18 @@ The code is characteristically ugly :dizzy_face: but feel free to use/modify wha
 
 # How to Install
 
-The preferred way to install this package is using devtools:
+The preferred way to install this package is using pak:
 
-First install devtools
+First install pak
 
 ```r
-install.packages("devtools")
+install.packages("pak")
 ```
 
 Then install melfuR
 
 ```r
-devtools::install_github("pygmyperch/melfuR")
+pak::pak("pygmyperch/melfuR")
 ```
 
 A quick overview of the functions:
