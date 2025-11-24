@@ -7,7 +7,7 @@
 #'
 #' @return a genind or genlight object with missing data imputed
 #'
-#'#' @details
+#' @details
 #' The function imputes missing genotypes based on ancestral population allele frequencies estimated using LEA::snmf()
 #'
 #' @author Chris Brauer

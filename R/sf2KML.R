@@ -1,87 +1,115 @@
 #' Convert Simple Features to KML
 #'
 #' @description
-#' This function converts Simple Features (sf) objects to Keyhole Markup Language (KML) format,
-#' allowing for easy visualization in Google Earth. It supports common
-#' geometry types including points, lines, and polygons.
+#' Convert Simple Features (\pkg{sf}) objects to Keyhole Markup Language (KML)
+#' format for visualisation in Google Earth. Supports common geometry types
+#' including points, lines, and polygons.
 #'
-#' @param sf_object An sf object containing the spatial data to be converted to KML.
-#' @param colour Character string specifying the color for point markers. Must be one of
-#'        "green", "blue", "red", "purple", "lightblue", "pink", or "white". Default is yellow.
-#' @param outputPath Character string specifying the path where the KML file will be saved.
-#'        If NULL, the file will be saved in the current working directory with a name
-#'        based on the sf_object.
-#' @param line_colour Color for lines and polygon outlines. Can be a named color (e.g., "red")
-#'        or a hex color code (e.g., "#FF0000"). Default is "#00ffff" (cyan).
-#' @param fill_colour Color for polygon fills. Can be a named color or a hex color code.
-#'        Default is "#00ff00" (green).
-#' @param fill_opacity Numeric value between 0 and 1 specifying the opacity of polygon fills.
-#'        Default is 0.5 (50\% opacity).
+#' @param sf_object An \code{sf} object containing the spatial data to be
+#'   converted to KML.
+#' @param colour Character string specifying the colour for point markers.
+#'   Must be one of \code{"green"}, \code{"blue"}, \code{"red"},
+#'   \code{"purple"}, \code{"lightblue"}, \code{"pink"}, or \code{"white"}.
+#'   Default is \code{"yellow"}.
+#' @param outputPath Character string specifying the path where the KML file
+#'   will be saved. If \code{NULL}, the file will be saved in the current
+#'   working directory with a name based on \code{sf_object}.
+#' @param line_colour Colour for lines and polygon outlines. Can be a named
+#'   colour (e.g., \code{"red"}) or a hex colour code (e.g., \code{"#FF0000"}).
+#'   Default is \code{"#00ffff"} (cyan).
+#' @param fill_colour Colour for polygon fills. Can be a named colour or a hex
+#'   colour code. Default is \code{"#00ff00"} (green).
+#' @param fill_opacity Numeric value between 0 and 1 specifying the opacity of
+#'   polygon fills. Default is \code{0.5} (50\% opacity).
 #'
-#' @return Invisible NULL. Writes a KML file to the specified or default path.
+#' @return
+#' Invisibly returns \code{NULL}. The function is called for its side effect of
+#' writing a KML file to the specified or default path.
 #'
 #' @details
-#' The function supports various geometry types:
-#' - POINT: Rendered as pushpins with colors specified by the 'colour' parameter.
-#' - LINESTRING and MULTILINESTRING: Rendered as lines with color specified by 'line_colour'.
-#' - POLYGON and MULTIPOLYGON: Rendered as filled polygons with outline color specified by
-#'   'line_colour' and fill color specified by 'fill_colour' and 'fill_opacity'.
+#' The following geometry types are supported:
 #'
-#' @examples
-#' \dontrun{
-#' library(sf)
-#' 
-#' # Create a data frame with Flinders University locations
-#' Flinders_University <- data.frame(
-#'   ID = c("MELFU", "Tavern", "Animal House", "Aquaculture compound", "Lake", "$1,360 car park"),
-#'   X = c(138.570071, 138.571627, 138.569855, 138.569586, 138.572218, 138.569437), 
-#'   Y = c(-35.026967, -35.026029, -35.028127, -35.027034, -35.026907, -35.029019)
-#' )
-#' 
-#' # Convert the data frame to an sf object (points)
-#' Flinders_sf_points <- st_as_sf(Flinders_University, coords = c("X", "Y"), crs = 4326)
-#' 
-#' # Create a KML file with points
-#' sf2KML(Flinders_sf_points, 
-#'        colour = "red", 
-#'        outputPath = "Flinders_points.kml")
-#' 
-#' # Create a line connecting all points
-#' Flinders_line <- st_cast(st_combine(Flinders_sf_points), "LINESTRING")
-#' Flinders_sf_line <- st_sf(geometry = Flinders_line, ID = "Flinders_path")
-#' 
-#' # Create a KML file with the line
-#' sf2KML(Flinders_sf_line, 
-#'        outputPath = "Flinders_line.kml", 
-#'        line_colour = "blue")
-#' 
-#' # Create a polygon (convex hull of all points)
-#' Flinders_polygon <- st_convex_hull(st_combine(Flinders_sf_points))
-#' Flinders_sf_polygon <- st_sf(geometry = Flinders_polygon, ID = "Flinders_area")
-#' 
-#' # Create a KML file with the polygon
-#' sf2KML(Flinders_sf_polygon, 
-#'        outputPath = "Flinders_polygon.kml", 
-#'        line_colour = "red", 
-#'        fill_colour = "yellow", 
-#'        fill_opacity = 0.3)
-#' 
-#' # Combine all geometries into one sf object
-#' Flinders_sf_all <- rbind(
-#'   Flinders_sf_points,
-#'   Flinders_sf_line,
-#'   Flinders_sf_polygon
-#' )
-#' 
-#' # Create a KML file with all geometries
-#' sf2KML(Flinders_sf_all, 
-#'        colour = "green", 
-#'        outputPath = "Flinders_all.kml", 
-#'        line_colour = "purple", 
-#'        fill_colour = "#00FFFF", 
-#'        fill_opacity = 0.5)
+#' \itemize{
+#'   \item \code{POINT}: rendered as pushpins, with colour specified by the
+#'     \code{colour} argument.
+#'   \item \code{LINESTRING} and \code{MULTILINESTRING}: rendered as lines,
+#'     with colour specified by \code{line_colour}.
+#'   \item \code{POLYGON} and \code{MULTIPOLYGON}: rendered as filled polygons
+#'     with outline colour specified by \code{line_colour} and fill colour
+#'     and opacity controlled by \code{fill_colour} and \code{fill_opacity}.
 #' }
+#' @examples
+#' if (requireNamespace("sf", quietly = TRUE)) {
+#'   library(sf)
 #'
+#'   # Example points: Flinders University locations
+#'   Flinders_University <- data.frame(
+#'     ID = c("MELFU", "Tavern", "Animal House",
+#'            "Aquaculture compound", "Lake", "$1,360 car park"),
+#'     X = c(138.570071, 138.571627, 138.569855,
+#'           138.569586, 138.572218, 138.569437),
+#'     Y = c(-35.026967, -35.026029, -35.028127,
+#'           -35.027034, -35.026907, -35.029019)
+#'   )
+#'
+#'   # Convert the data frame to an sf object (points)
+#'   Flinders_sf_points <- st_as_sf(
+#'     Flinders_University,
+#'     coords = c("X", "Y"),
+#'     crs    = 4326
+#'   )
+#'
+#'   # Create a KML file with points
+#'   sf2KML(
+#'     Flinders_sf_points,
+#'     colour     = "red",
+#'     outputPath = "Flinders_points.kml"
+#'   )
+#'
+#'   # Create a line connecting all points
+#'   Flinders_line <- st_cast(st_combine(Flinders_sf_points), "LINESTRING")
+#'   Flinders_sf_line <- st_sf(
+#'     geometry = Flinders_line,
+#'     ID       = "Flinders_path"
+#'   )
+#'
+#'   sf2KML(
+#'     Flinders_sf_line,
+#'     outputPath  = "Flinders_line.kml",
+#'     line_colour = "blue"
+#'   )
+#'
+#'   # Create a polygon (convex hull of all points)
+#'   Flinders_polygon <- st_convex_hull(st_combine(Flinders_sf_points))
+#'   Flinders_sf_polygon <- st_sf(
+#'     geometry = Flinders_polygon,
+#'     ID       = "Flinders_area"
+#'   )
+#'
+#'   sf2KML(
+#'     Flinders_sf_polygon,
+#'     outputPath   = "Flinders_polygon.kml",
+#'     line_colour  = "red",
+#'     fill_colour  = "yellow",
+#'     fill_opacity = 0.3
+#'   )
+#'
+#'   # Combine all geometries into one sf object
+#'   Flinders_sf_all <- rbind(
+#'     Flinders_sf_points,
+#'     Flinders_sf_line,
+#'     Flinders_sf_polygon
+#'   )
+#'
+#'   sf2KML(
+#'     Flinders_sf_all,
+#'     colour      = "green",
+#'     outputPath  = "Flinders_all.kml",
+#'     line_colour = "purple",
+#'     fill_colour = "#00FFFF",
+#'     fill_opacity = 0.5
+#'   )
+#' }
 #' @importFrom sf st_bbox st_centroid st_as_sfc st_coordinates st_geometry st_geometry_type
 #' @importFrom xml2 read_xml xml_add_child write_xml
 #' @export

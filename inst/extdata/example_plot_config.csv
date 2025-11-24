@@ -1,0 +1,6 @@
+P1,P2,P3,panel_label,tree_label1,tree_label2,tree_label3,colour
+BosCrete,BosCrete,Hs,a,Bos_Crete,Bos_Crete,H. sapiens,#A0522D
+BosAtns,BosAtns,Hs,,Bos_Athens,Bos_Crete,H. sapiens,#805E2F
+Hs,Hs,Hs,b,H. sapiens,H. sapiens,H. sapiens,#4682B4
+BosCrete,Min,Hs,c,Bos_Crete,Minotaur,H. sapiens,#556B2F
+BosAtns,Mino,Hs,,Bos_Athens,Minotaur,H. sapiens,#556B2F

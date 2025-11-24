@@ -15,12 +15,12 @@ impute_genotypes(input.genotypes, K = NULL, no_cores = 1)
 }
 \value{
 a genind or genlight object with missing data imputed
-
-#' @details
-The function imputes missing genotypes based on ancestral population allele frequencies estimated using LEA::snmf()
 }
 \description{
 impute missing genotypes based on pop structure characterised using snmf
+}
+\details{
+The function imputes missing genotypes based on ancestral population allele frequencies estimated using LEA::snmf()
 }
 \examples{
  ## set directory for results to be written
